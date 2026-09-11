@@ -1,6 +1,6 @@
 {
   "name": "fitmeet-dsh-plugin",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Installable FitMeet MCP and Skill plugin for DeepSeek Harness with per-user OAuth 2.1 and PKCE.",
   "type": "module",
   "main": "lib/index.js",

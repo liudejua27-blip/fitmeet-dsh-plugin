@@ -31,19 +31,25 @@
 
 ## 安装
 
-需要 Node.js 22.19 或更高版本。运行：
+需要 Node.js 22.19 或更高版本。推荐直接从 npm 安装：
 
 ```sh
-npx --yes @deepseek-ai/dsh@latest plugin --profile web add github:liudejua27-blip/fitmeet-dsh-plugin
+npx --yes @deepseek-ai/dsh@latest plugin --profile web add fitmeet-dsh-plugin
 npx --yes @deepseek-ai/dsh@latest web
 ```
 
 第一次启动时，插件会打开 FitMeet 授权页。用户登录自己的 FitMeet 账号、查看权限并同意后，Harness 才会注册 `mcp__fitmeet__...` 工具。授权记录和 Token 由该用户设备上的 DeepSeek Harness credential service 保存。
 
-安装固定版本可使用 Git tag：
+安装固定版本：
 
 ```sh
-npx --yes @deepseek-ai/dsh@latest plugin --profile web add github:liudejua27-blip/fitmeet-dsh-plugin#v0.1.0
+npx --yes @deepseek-ai/dsh@latest plugin --profile web add fitmeet-dsh-plugin@0.1.1
+```
+
+也可以直接从 GitHub 安装：
+
+```sh
+npx --yes @deepseek-ai/dsh@latest plugin --profile web add github:liudejua27-blip/fitmeet-dsh-plugin#v0.1.1
 ```
 
 验证配置层：
