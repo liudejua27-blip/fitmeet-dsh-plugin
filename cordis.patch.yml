@@ -1,0 +1,17 @@
+- insert:
+    - id: fitmeet-mcp-oauth
+      name: fitmeet-dsh-plugin
+      config:
+        serverName: fitmeet
+        url: https://api.fitmeet.cn/api/v1/mcp
+        credentialRef: FITMEET_MCP_OAUTH
+        scope: 'profile:read people:search hall:publish messages:read messages:write'
+        callbackPort: 0
+        authorizationTimeoutMs: 300000
+        toolCallTimeoutMs: 60000
+        failOnStartupError: true
+        reconnect:
+          enabled: true
+          initialDelayMs: 500
+          maxDelayMs: 30000
+          maxAttempts: 10

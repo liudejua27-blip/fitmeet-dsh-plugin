@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "fitmeet": {
+      "type": "streamableHttp",
+      "url": "https://api.fitmeet.cn/api/v1/mcp"
+    }
+  }
+}
