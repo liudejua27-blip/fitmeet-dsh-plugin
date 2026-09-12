@@ -34,11 +34,11 @@ const MAX_TIMER_DELAY_MS = 2_147_483_647
 const SERVER_NAME_PATTERN = /^[A-Za-z0-9_-]{1,32}$/
 export const FITMEET_SERVER_NAME = 'fitmeet'
 export const FITMEET_MCP_URL = 'https://api.fitmeet.cn/api/v1/mcp'
-export const FITMEET_SCOPES = 'profile:read people:search hall:publish messages:read messages:write'
+export const FITMEET_SCOPES = 'profile:read people:search hall:publish messages:read messages:write social:read'
 export const FITMEET_CREDENTIAL_REF = 'FITMEET_MCP_OAUTH'
 const SKILL_URL = new URL('../skills/fitmeet/SKILL.md', import.meta.url)
 const SKILL_DIRECTORY = fileURLToPath(new URL('../skills/fitmeet/', import.meta.url))
-const SKILL_DESCRIPTION = 'Use FitMeet to search its consent-based human network and, only after an exact preview and explicit current-turn confirmation, publish, open a direct chat, or send a message.'
+const SKILL_DESCRIPTION = 'Use FitMeet to find social companions, read visible gatherings and personal follow-up information, and, only after an exact preview and explicit current-turn confirmation, publish, open a direct chat, or send a message.'
 
 /** User configuration for one OAuth-protected Streamable HTTP MCP server. */
 export interface Config {
@@ -48,7 +48,7 @@ export interface Config {
   url: string
   /** Harness credential reference holding the serialized OAuth state. */
   credentialRef?: string
-  /** Optional fallback OAuth scope when server metadata does not declare one. */
+  /** Optional nonempty subset of FitMeet scopes; defaults to all supported scopes. Browser consent is still required. */
   scope?: string
   /** Non-authorization headers attached to MCP and OAuth discovery requests. */
   headers?: Record<string, string>
@@ -69,7 +69,7 @@ export interface ResolvedConfig {
   serverName: string
   url: string
   credentialRef: string
-  scope?: string
+  scope: string
   headers: Record<string, string>
   callbackPort: number
   authorizationTimeoutMs: number
@@ -110,9 +110,10 @@ export function defaultCredentialRef(serverName: string): string {
 /** Model guidance for discovering and executing capabilities from one MCP server. */
 export function mcpGuidance(serverName: string): string {
   const prefix = `mcp__${serverName}__`
-  return `Use FitMeet tools beginning with ${prefix} when the user asks to find people, needs, capabilities, or manage FitMeet publishing and direct messages. `
+  return `Use FitMeet tools beginning with ${prefix} when the user asks to find people, needs, capabilities, read visible groups, personal notifications, items and feedback, or manage FitMeet publishing and direct messages. `
     + 'Search results are evidence for the user to assess, not consent to contact. '
     + 'For publishing, opening a chat, or sending a message, call the matching prepare tool, show the exact preview, obtain explicit confirmation in the current turn, then call the matching confirm tool with the unchanged confirmation values. '
+    + 'Group participation, scheduling, notification settings and feedback changes use returned FitMeet page links; social tools only read snapshots. '
     + 'Never treat OAuth consent as confirmation of a specific write action.'
 }
 
@@ -129,7 +130,7 @@ export async function registerFitMeetSkill(ctx: Context): Promise<void> {
     skillCtx.skills.register({
       name: 'fitmeet',
       description: SKILL_DESCRIPTION,
-      whenToUse: 'Use when the user wants to find people or public needs/capabilities in FitMeet, review their FitMeet profile, publish after confirmation, or manage one-to-one FitMeet conversations.',
+      whenToUse: 'Use when the user wants to find people or public needs/capabilities in FitMeet, review their FitMeet profile, publish after confirmation, manage one-to-one FitMeet conversations, or read visible groups, personal notifications, items and feedback.',
       source: 'bundled',
       resourceBase: { kind: 'directory', path: SKILL_DIRECTORY },
       content,
@@ -179,17 +180,18 @@ export function resolveConfig(config: Config): ResolvedConfig {
   if (ref !== FITMEET_CREDENTIAL_REF) {
     throw new Error(`fitmeet-dsh-plugin: credentialRef must be ${FITMEET_CREDENTIAL_REF}`)
   }
-  const scope = config.scope?.trim()
-  if (config.scope !== undefined && !scope) throw new Error('fitmeet-dsh-plugin: scope must not be empty')
-  if (scope !== undefined && scope !== FITMEET_SCOPES) {
-    throw new Error(`fitmeet-dsh-plugin: scope must be exactly ${FITMEET_SCOPES}`)
+  const requested = (config.scope ?? FITMEET_SCOPES).trim().split(/\s+/)
+  const allowed = FITMEET_SCOPES.split(' ')
+  if (!requested[0] || requested.some(scope => !allowed.includes(scope)) || new Set(requested).size !== requested.length) {
+    throw new Error('fitmeet-dsh-plugin: scope must be a nonempty, unique subset of supported FitMeet scopes')
   }
+  const scope = allowed.filter(scope => requested.includes(scope)).join(' ')
 
   return Object.freeze({
     serverName: config.serverName,
     url: url.toString(),
     credentialRef: ref,
-    ...(scope === undefined ? {} : { scope }),
+    scope,
     headers,
     callbackPort,
     authorizationTimeoutMs,

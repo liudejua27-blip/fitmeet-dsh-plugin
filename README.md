@@ -43,13 +43,13 @@ npx --yes @deepseek-ai/dsh@latest web
 安装固定版本：
 
 ```sh
-npx --yes @deepseek-ai/dsh@latest plugin --profile web add fitmeet-dsh-plugin@0.1.1
+npx --yes @deepseek-ai/dsh@latest plugin --profile web add fitmeet-dsh-plugin@0.1.2
 ```
 
 也可以直接从 GitHub 安装：
 
 ```sh
-npx --yes @deepseek-ai/dsh@latest plugin --profile web add github:liudejua27-blip/fitmeet-dsh-plugin#v0.1.1
+npx --yes @deepseek-ai/dsh@latest plugin --profile web add github:liudejua27-blip/fitmeet-dsh-plugin#v0.1.2
 ```
 
 验证配置层：
@@ -91,7 +91,7 @@ npx --yes @deepseek-ai/dsh@latest plugin --profile web remove fitmeet-dsh-plugin
 
 ## OAuth 权限
 
-服务端当前提供以下可选 scope；这不是已发布插件版本的配置示例：
+0.1.2 支持以下六项可选 scope；默认安装请求全部六项，由用户在 OAuth 页面决定是否授权。也可以选择非空权限子集：
 
 ```text
 profile:read people:search hall:publish messages:read messages:write social:read
@@ -175,8 +175,16 @@ MIT。OAuth MCP 连接层基于 MIT 许可的社区实现改造；完整归属�
 | `fitmeet_my_items_list` | 分页读取本人连接事项 |
 | `fitmeet_connection_feedback_get` | 读取本人连接反馈 |
 
-已有连接不会自动获得新权限。组局创建、加入、改期、完成和反馈修改，使用服务返回的 FitMeet 页面入口完成。读取提醒是当前快照，不代表后台持续监控。此更新是公开资料同步，不代表新增工具已在每个客户端完成真实验收；已发布插件版本的内置 Skill 仍以该版本为准，当前文档和 Skill 可从此仓库获取。
+已有连接不会自动获得新权限。组局创建、加入、改期、完成和反馈修改，使用服务返回的 FitMeet 页面入口完成。读取提醒是当前快照，不代表后台持续监控。0.1.2 已更新插件的权限校验和内置 Skill；工具实际可见范围以当前账号授权为准，真实账号逐项调用仍需在对应客户端验收。
 
 了解实际使用：[AI 同行交流](https://fitmeet.cn/scenes/ai-peers)、[组局与群聊](https://fitmeet.cn/gatherings)。
 
-注意：插件 0.1.1 的默认配置与显式 scope 校验仍使用原有五项权限，不包含 social:read。新增五项读取能力在该版本中不能仅靠复制上面的六权限列表开启；需要后续插件版本调整并完成客户端授权验收。本次同步的是服务能力文档和 Skill，未发布新的 npm 插件版本。
+## 从 0.1.1 升级
+
+安装上面的固定新版并重启对应 Harness profile；现有 profile 中保存的插件配置可能仍为旧五权限，需要在该插件的 scope 配置中增加 social:read。更新安装包不会替你改写现有配置或自动授予新权限。
+
+0.1.2 接受原有五权限以及任意非空的有效权限子集，例如只读社交设置 `scope: 'social:read'`，或只找人设置 `scope: 'people:search'`。重复或未知权限会被拒绝。默认安装配置包含六权限，只申请任务所需的范围即可。
+
+权限配置变化后，插件不会继续使用不对应的旧凭据，而会要求浏览器重新授权。保持原五权限配置时可继续复用原授权。用户只批准部分权限时，插件尊重实际授予的工具范围，不反复强求全权限。
+
+新安装包包含 `skills/fitmeet/references/setup.md` 和 `service.json`。包发布、安装和服务端工具可用，与应用商店收录、真实账号逐项调用，是不同的状态。

@@ -8,6 +8,7 @@ const expectedScopes = [
   'hall:publish',
   'messages:read',
   'messages:write',
+  'social:read',
 ]
 
 const unauthorized = await fetch(endpoint, {
@@ -20,7 +21,7 @@ const unauthorized = await fetch(endpoint, {
     params: {
       protocolVersion: '2025-03-26',
       capabilities: {},
-      clientInfo: { name: 'fitmeet-dsh-plugin-check', version: '0.1.0' },
+      clientInfo: { name: 'fitmeet-dsh-plugin-check', version: '0.1.2' },
     },
   }),
 })

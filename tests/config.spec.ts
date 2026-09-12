@@ -37,9 +37,30 @@ describe('FitMeet plugin configuration', () => {
 
   it('rejects endpoint, scope, credential, and Authorization header overrides', () => {
     expect(() => resolveConfig({ ...validConfig(), url: 'https://example.com/mcp' })).toThrow('FitMeet MCP endpoint')
-    expect(() => resolveConfig({ ...validConfig(), scope: 'profile:read' })).toThrow('scope must be exactly')
+    expect(() => resolveConfig({ ...validConfig(), scope: 'admin:write' })).toThrow('subset')
     expect(() => resolveConfig({ ...validConfig(), credentialRef: 'OTHER_CREDENTIAL' })).toThrow('credentialRef must be')
     expect(() => resolveConfig({ ...validConfig(), headers: { Authorization: 'Bearer secret' } })).toThrow('owned by OAuth')
+  })
+
+  it('accepts legacy grants and least-privilege social scopes without broadening them', () => {
+    expect(resolveConfig({ ...validConfig(), scope: 'social:read' }).scope).toBe('social:read')
+    expect(resolveConfig({ ...validConfig(), scope: ' people:search  profile:read ' }).scope).toBe('profile:read people:search')
+    const legacy = FITMEET_SCOPES.replace(' social:read', '')
+    expect(resolveConfig({ ...validConfig(), scope: legacy }).scope).toBe(legacy)
+    expect(resolveConfig({ serverName: 'fitmeet', url: FITMEET_MCP_URL }).scope).toBe(FITMEET_SCOPES)
+    for (const scope of ['', ' ', 'social:write', 'profile:read profile:read']) {
+      expect(() => resolveConfig({ ...validConfig(), scope })).toThrow('subset')
+    }
+  })
+
+  it('keeps runtime scopes, public manifest and install bundle aligned', async () => {
+    const service = JSON.parse(await readFile(`${root}/service.json`, 'utf8'))
+    expect(FITMEET_SCOPES.split(' ').sort()).toEqual(service.authentication.optionalScopes.sort())
+    const patch = await readFile(`${root}/cordis.patch.yml`, 'utf8')
+    expect(patch).toContain(`scope: '${FITMEET_SCOPES}'`)
+    const manifest = JSON.parse(await readFile(`${root}/package.json`, 'utf8'))
+    expect(manifest.files).toContain('skills/fitmeet/references/*.md')
+    expect(manifest.files).toContain('service.json')
   })
 
   it('ships a DSH bundle without install-time lifecycle scripts', async () => {

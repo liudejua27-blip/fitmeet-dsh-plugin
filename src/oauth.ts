@@ -25,6 +25,7 @@ const FAILURE_HTML = '<!doctype html><meta charset="utf-8"><title>Authorization 
 
 const StoredOAuthStateSchema = z.object({
   version: z.literal(1),
+  requestedScope: z.string().optional(),
   redirectUrl: z.string().optional(),
   clientInformation: z.union([OAuthClientInformationFullSchema, OAuthClientInformationSchema]).optional(),
   tokens: OAuthTokensSchema.optional(),
@@ -33,6 +34,7 @@ const StoredOAuthStateSchema = z.object({
 
 interface StoredOAuthState {
   version: 1
+  requestedScope?: string
   redirectUrl?: string
   clientInformation?: OAuthClientInformationMixed
   tokens?: OAuthTokens
@@ -102,6 +104,17 @@ class HarnessOAuthProvider implements OAuthClientProvider {
   private verifier: string | undefined
   private expectedState: string | undefined
 
+  private matchesScope(state: StoredOAuthState): boolean {
+    // Legacy grants predate social:read. Unknown legacy scope must never be
+    // treated as consent to the new permission. Partial grants remain valid
+    // for an unchanged request; only the server decides the granted access.
+    const clientScope = state.clientInformation && 'scope' in state.clientInformation ? state.clientInformation.scope : undefined
+    const saved = state.requestedScope ?? clientScope ?? state.tokens?.scope
+      ?? 'profile:read people:search hall:publish messages:read messages:write'
+    const normalize = (value: string) => value.trim().split(/\s+/).sort().join(' ')
+    return normalize(saved) === normalize(this.config.scope ?? '')
+  }
+
   constructor(
     private readonly store: CredentialOAuthStore,
     private readonly runtime: OAuthRuntimeImpl,
@@ -137,20 +150,21 @@ class HarnessOAuthProvider implements OAuthClientProvider {
 
   async clientInformation(): Promise<OAuthClientInformationMixed | undefined> {
     const state = await this.store.read()
-    return state.redirectUrl === this.redirectUrl.toString() ? state.clientInformation : undefined
+    return state.redirectUrl === this.redirectUrl.toString() && this.matchesScope(state) ? state.clientInformation : undefined
   }
 
   async saveClientInformation(clientInformation: OAuthClientInformationMixed): Promise<void> {
     await this.store.update((state) => {
-      if (state.redirectUrl !== this.redirectUrl.toString()) delete state.tokens
+      if (state.redirectUrl !== this.redirectUrl.toString() || !this.matchesScope(state)) delete state.tokens
       state.redirectUrl = this.redirectUrl.toString()
+      state.requestedScope = this.config.scope
       state.clientInformation = clientInformation
     })
   }
 
   async tokens(): Promise<OAuthTokens | undefined> {
     const state = await this.store.read()
-    return state.redirectUrl === this.redirectUrl.toString() ? state.tokens : undefined
+    return state.redirectUrl === this.redirectUrl.toString() && this.matchesScope(state) ? state.tokens : undefined
   }
 
   async saveTokens(tokens: OAuthTokens): Promise<void> {
@@ -158,7 +172,11 @@ class HarnessOAuthProvider implements OAuthClientProvider {
   }
 
   async redirectToAuthorization(authorizationUrl: URL): Promise<void> {
-    await this.runtime.beginAuthorization(authorizationUrl)
+    // SDK discovery prefers all server-advertised scopes over client metadata.
+    // Honor the user's configured subset at the browser authorization boundary.
+    const requestedUrl = new URL(authorizationUrl)
+    if (this.config.scope) requestedUrl.searchParams.set('scope', this.config.scope)
+    await this.runtime.beginAuthorization(requestedUrl)
   }
 
   saveCodeVerifier(codeVerifier: string): void {

@@ -1,6 +1,6 @@
 {
   "name": "fitmeet-dsh-plugin",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Installable FitMeet MCP and Skill plugin for DeepSeek Harness with per-user OAuth 2.1 and PKCE.",
   "type": "module",
   "main": "lib/index.js",
@@ -23,14 +23,19 @@
     "README.md",
     "LICENSE",
     "THIRD_PARTY_NOTICES.md",
-    "SECURITY.md"
+    "SECURITY.md",
+    "skills/fitmeet/references/*.md",
+    "service.json",
+    "CHANGELOG.md"
   ],
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
     "typecheck": "tsc -p tsconfig.json",
     "test": "vitest run",
-    "check": "pnpm typecheck && pnpm test && pnpm build",
-    "verify:production": "node scripts/verify-production-oauth.mjs"
+    "check": "pnpm typecheck && pnpm test && pnpm build && pnpm check:public-contract",
+    "verify:production": "node scripts/verify-production-oauth.mjs",
+    "check:public-contract": "node scripts/fitmeet-public-contract.mjs",
+    "prepublishOnly": "pnpm check"
   },
   "engines": {
     "node": ">=22.19"

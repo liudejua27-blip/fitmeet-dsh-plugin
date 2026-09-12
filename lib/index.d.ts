@@ -18,7 +18,7 @@ export declare const name = "fitmeet-dsh-plugin";
 export declare const inject: string[];
 export declare const FITMEET_SERVER_NAME = "fitmeet";
 export declare const FITMEET_MCP_URL = "https://api.fitmeet.cn/api/v1/mcp";
-export declare const FITMEET_SCOPES = "profile:read people:search hall:publish messages:read messages:write";
+export declare const FITMEET_SCOPES = "profile:read people:search hall:publish messages:read messages:write social:read";
 export declare const FITMEET_CREDENTIAL_REF = "FITMEET_MCP_OAUTH";
 /** User configuration for one OAuth-protected Streamable HTTP MCP server. */
 export interface Config {
@@ -28,7 +28,7 @@ export interface Config {
     url: string;
     /** Harness credential reference holding the serialized OAuth state. */
     credentialRef?: string;
-    /** Optional fallback OAuth scope when server metadata does not declare one. */
+    /** Optional nonempty subset of FitMeet scopes; defaults to all supported scopes. Browser consent is still required. */
     scope?: string;
     /** Non-authorization headers attached to MCP and OAuth discovery requests. */
     headers?: Record<string, string>;
@@ -48,7 +48,7 @@ export interface ResolvedConfig {
     serverName: string;
     url: string;
     credentialRef: string;
-    scope?: string;
+    scope: string;
     headers: Record<string, string>;
     callbackPort: number;
     authorizationTimeoutMs: number;

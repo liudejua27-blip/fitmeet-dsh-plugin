@@ -5,7 +5,7 @@
         serverName: fitmeet
         url: https://api.fitmeet.cn/api/v1/mcp
         credentialRef: FITMEET_MCP_OAUTH
-        scope: 'profile:read people:search hall:publish messages:read messages:write'
+        scope: 'profile:read people:search hall:publish messages:read messages:write social:read'
         callbackPort: 0
         authorizationTimeoutMs: 300000
         toolCallTimeoutMs: 60000

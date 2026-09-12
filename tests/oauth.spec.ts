@@ -8,6 +8,7 @@ import {
   resolveConfig,
 } from '../src/index.js'
 import { createOAuthRuntime } from '../src/oauth.js'
+import { credentialRef } from '../src/dsh.js'
 
 const config = resolveConfig({
   serverName: 'fitmeet',
@@ -41,7 +42,8 @@ describe('OAuth loopback flow', () => {
       const state = String(await accepted.provider.state?.())
       const authorizationUrl = new URL(`https://api.fitmeet.cn/authorize?state=${state}`)
       await accepted.provider.redirectToAuthorization(authorizationUrl)
-      expect(opened).toEqual([authorizationUrl])
+      expect(opened[0]?.searchParams.get('state')).toBe(state)
+      expect(opened[0]?.searchParams.get('scope')).toBe(FITMEET_SCOPES)
 
       const callback = new URL(accepted.provider.redirectUrl!)
       callback.search = new URLSearchParams({ code: 'valid-code', state }).toString()
@@ -74,6 +76,52 @@ describe('OAuth loopback flow', () => {
     } finally {
       await second.dispose()
     }
+  })
+
+  it('does not reuse a legacy five-scope credential when the new permission is requested', async () => {
+    const ctx = credentialContext()
+    const legacy = { ...config, scope: FITMEET_SCOPES.replace(' social:read', '') }
+    const first = await createOAuthRuntime(ctx, legacy, async () => {})
+    await first.provider.saveClientInformation?.({ client_id: 'old-client' })
+    await first.provider.saveTokens({ access_token: 'old-access', refresh_token: 'old-refresh', token_type: 'bearer' })
+    await first.dispose()
+    const stored = JSON.parse((await ctx.credentials.resolve(credentialRef(FITMEET_CREDENTIAL_REF)))!.value)
+    delete stored.requestedScope // Credential written by 0.1.1.
+    await ctx.credentials.set(credentialRef(FITMEET_CREDENTIAL_REF), JSON.stringify(stored))
+    const next = await createOAuthRuntime(ctx, config, async () => {})
+    try {
+      expect(await next.provider.clientInformation()).toBeUndefined()
+      expect(await next.provider.tokens()).toBeUndefined()
+      await next.provider.saveClientInformation?.({ client_id: 'new-client' })
+      expect(await next.provider.tokens()).toBeUndefined()
+      await next.provider.saveTokens({ access_token: 'new-access', token_type: 'bearer', scope: 'people:search' })
+      // A user may decline some requested scopes; don't repeatedly force consent.
+      expect(await next.provider.tokens()).toMatchObject({ scope: 'people:search' })
+    } finally { await next.dispose() }
+  })
+
+  it('keeps configured read-only scopes in the authorization URL despite broad discovery metadata', async () => {
+    const urls: URL[] = []
+    const runtime = await createOAuthRuntime(credentialContext(), { ...config, scope: 'social:read' }, async url => { urls.push(url) })
+    try {
+      const state = String(await runtime.provider.state?.())
+      await runtime.provider.redirectToAuthorization(new URL(`https://api.fitmeet.cn/authorize?scope=${encodeURIComponent(FITMEET_SCOPES)}&state=${state}`))
+      expect(urls[0]?.searchParams.get('scope')).toBe('social:read')
+      expect(urls[0]?.searchParams.get('state')).toBe(state)
+    } finally { await runtime.dispose() }
+  })
+
+  it('does not reuse a wider token after narrowing the configured permissions', async () => {
+    const ctx = credentialContext()
+    const first = await createOAuthRuntime(ctx, config, async () => {})
+    await first.provider.saveClientInformation?.({ client_id: 'wide-client' })
+    await first.provider.saveTokens({ access_token: 'wide-access', token_type: 'bearer' })
+    await first.dispose()
+    const next = await createOAuthRuntime(ctx, { ...config, scope: 'social:read' }, async () => {})
+    try {
+      expect(await next.provider.tokens()).toBeUndefined()
+      expect(await next.provider.clientInformation()).toBeUndefined()
+    } finally { await next.dispose() }
   })
 })
 
