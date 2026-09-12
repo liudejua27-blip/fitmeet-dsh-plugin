@@ -1,0 +1,163 @@
+{
+  "format": "fitmeet-public-service-v1",
+  "name": "FitMeet",
+  "description": "由 AI Agent 帮助表达需求、寻找真实的人、发现组局并建立联系；支持个人授权的 MCP 搜索、读取及确认后发布和私聊。",
+  "updatedAt": "2026-09-12",
+  "homepage": "https://fitmeet.cn",
+  "documentation": "https://fitmeet.cn/developers/agent-setup",
+  "endpoint": "https://api.fitmeet.cn/api/v1/mcp",
+  "transport": "streamable-http",
+  "authentication": {
+    "type": "oauth2",
+    "perUser": true,
+    "pkce": "S256",
+    "sharedCredentials": false,
+    "optionalScopes": [
+      "profile:read",
+      "people:search",
+      "hall:publish",
+      "messages:read",
+      "messages:write",
+      "social:read"
+    ]
+  },
+  "configurationExample": "https://fitmeet.cn/mcp.json",
+  "skill": "https://fitmeet.cn/skills/fitmeet/SKILL.md",
+  "skillDownload": "https://fitmeet.cn/downloads/fitmeet-skill.zip",
+  "compatibility": "https://fitmeet.cn/integrations",
+  "setupRequires": [
+    "host configuration permission",
+    "remote Streamable HTTP support",
+    "per-user OAuth support",
+    "user completes account authorization"
+  ],
+  "verificationStages": [
+    "configuration_saved",
+    "tools_discovered",
+    "authorized_read_succeeded",
+    "client_lifecycle_verified"
+  ],
+  "actionsRequireConfirmation": [
+    "publish",
+    "open_chat",
+    "send_message"
+  ],
+  "externalDiscovery": "profile-owner opt-in and revocable",
+  "formatNote": "FitMeet-maintained public documentation, not a universal Agent discovery standard.",
+  "serverVersion": "2.1.0",
+  "toolCount": 17,
+  "socialReadTools": [
+    "fitmeet_groups_list",
+    "fitmeet_group_get",
+    "fitmeet_notifications_get",
+    "fitmeet_my_items_list",
+    "fitmeet_connection_feedback_get"
+  ],
+  "socialWriteHandoff": "Group participation, schedule changes, completion and feedback edits use existing FitMeet pages.",
+  "tools": [
+    {
+      "name": "fitmeet_groups_list",
+      "scopes": [
+        "social:read"
+      ]
+    },
+    {
+      "name": "fitmeet_group_get",
+      "scopes": [
+        "social:read"
+      ]
+    },
+    {
+      "name": "fitmeet_notifications_get",
+      "scopes": [
+        "social:read"
+      ]
+    },
+    {
+      "name": "fitmeet_my_items_list",
+      "scopes": [
+        "social:read"
+      ]
+    },
+    {
+      "name": "fitmeet_connection_feedback_get",
+      "scopes": [
+        "social:read"
+      ]
+    },
+    {
+      "name": "fitmeet_profile_get",
+      "scopes": [
+        "profile:read"
+      ]
+    },
+    {
+      "name": "fitmeet_people_search",
+      "scopes": [
+        "people:search"
+      ]
+    },
+    {
+      "name": "fitmeet_people_details",
+      "scopes": [
+        "people:search"
+      ]
+    },
+    {
+      "name": "fitmeet_publication_sources",
+      "scopes": [
+        "hall:publish"
+      ]
+    },
+    {
+      "name": "fitmeet_publication_prepare",
+      "scopes": [
+        "hall:publish"
+      ]
+    },
+    {
+      "name": "fitmeet_publication_confirm",
+      "scopes": [
+        "hall:publish"
+      ]
+    },
+    {
+      "name": "fitmeet_conversations_list",
+      "scopes": [
+        "messages:read"
+      ]
+    },
+    {
+      "name": "fitmeet_messages_list",
+      "scopes": [
+        "messages:read"
+      ]
+    },
+    {
+      "name": "fitmeet_chat_prepare",
+      "scopes": [
+        "people:search",
+        "messages:write"
+      ]
+    },
+    {
+      "name": "fitmeet_chat_confirm",
+      "scopes": [
+        "people:search",
+        "messages:write"
+      ]
+    },
+    {
+      "name": "fitmeet_message_prepare",
+      "scopes": [
+        "messages:write"
+      ]
+    },
+    {
+      "name": "fitmeet_message_confirm",
+      "scopes": [
+        "messages:write"
+      ]
+    }
+  ]
+}

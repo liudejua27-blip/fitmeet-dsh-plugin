@@ -23,7 +23,7 @@
 - FitMeet 远程 Streamable HTTP MCP 连接器；
 - 每位用户独立的 OAuth 2.1 + PKCE S256 浏览器授权；
 - Dynamic Client Registration、Token 刷新与本地凭据保存；
-- 12 个 FitMeet MCP 工具的发现、注册与调用；
+- 按当前授权发现、注册与调用 FitMeet MCP 工具（服务端现有 17 项；新权限需重新授权）；
 - 内置的 `fitmeet` Agent Skill 和写操作确认规则；
 - 可被 DeepSeek Harness 社区插件目录发现的 `dsh-plugin` 包元数据。
 
@@ -91,10 +91,10 @@ npx --yes @deepseek-ai/dsh@latest plugin --profile web remove fitmeet-dsh-plugin
 
 ## OAuth 权限
 
-每个用户通过自己的 FitMeet 账号授予以下 scope：
+服务端当前提供以下可选 scope；这不是已发布插件版本的配置示例：
 
 ```text
-profile:read people:search hall:publish messages:read messages:write
+profile:read people:search hall:publish messages:read messages:write social:read
 ```
 
 授权链路：
@@ -106,7 +106,7 @@ flowchart LR
   Browser --> Consent[用户登录并授权]
   Consent --> Callback[本机 loopback callback]
   Callback --> Credentials[Harness 凭据库]
-  Credentials --> Tools[注册 12 个 FitMeet 工具]
+  Credentials --> Tools[注册当前授权可见工具]
 ```
 
 OAuth 只允许 Agent 请求相应能力，不代表用户同意某一次发布、建立私聊或发送消息。写操作必须遵循：
@@ -160,3 +160,23 @@ DeepSeek Harness 仍处于 Developer Preview，官方提示后续可能有破坏
 ## 许可证
 
 MIT。OAuth MCP 连接层基于 MIT 许可的社区实现改造；完整归属见 [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md)。
+
+## MCP 2.1 能力更新（2026-09-12）
+
+服务当前提供 17 个工具，完整清单和每项权限见 [service.json](service.json)。网站、通用配置包与本仓库共用这份公开说明；运行时的 `tools/list` 才是当前授权实际可见的工具。
+
+新增 `social:read` 工具：
+
+| 工具 | 用途 |
+| --- | --- |
+| `fitmeet_groups_list` | 查询本人组局或允许外部发现的公开组局 |
+| `fitmeet_group_get` | 读取可见组局信息；不读取群消息或成员名单 |
+| `fitmeet_notifications_get` | 读取本人未读汇总与通知设置 |
+| `fitmeet_my_items_list` | 分页读取本人连接事项 |
+| `fitmeet_connection_feedback_get` | 读取本人连接反馈 |
+
+已有连接不会自动获得新权限。组局创建、加入、改期、完成和反馈修改，使用服务返回的 FitMeet 页面入口完成。读取提醒是当前快照，不代表后台持续监控。此更新是公开资料同步，不代表新增工具已在每个客户端完成真实验收；已发布插件版本的内置 Skill 仍以该版本为准，当前文档和 Skill 可从此仓库获取。
+
+了解实际使用：[AI 同行交流](https://fitmeet.cn/scenes/ai-peers)、[组局与群聊](https://fitmeet.cn/gatherings)。
+
+注意：插件 0.1.1 的默认配置与显式 scope 校验仍使用原有五项权限，不包含 social:read。新增五项读取能力在该版本中不能仅靠复制上面的六权限列表开启；需要后续插件版本调整并完成客户端授权验收。本次同步的是服务能力文档和 Skill，未发布新的 npm 插件版本。

@@ -2,11 +2,11 @@
 name: fitmeet
 display_name: FitMeet 人与需求连接
 display_name_en: FitMeet People & Needs
-description: 在用户授权与逐次确认后，搜索合适的人和需求、发布到大厅，并管理 FitMeet 私聊。
-description_zh: 在用户授权与逐次确认后，搜索合适的人和需求、发布到大厅，并管理 FitMeet 私聊。
+description: 在用户授权与逐次确认后，搜索合适的人和需求，读取组局、提醒与事项，并在确认后发布和私聊。
+description_zh: 在用户授权与逐次确认后，搜索合适的人和需求，读取组局、提醒与事项，并在确认后发布和私聊。
 description_en: With user authorization and per-action confirmation, search people and needs, publish to the Hall, and manage FitMeet direct messages.
-allowed-tools: fitmeet_profile_get, fitmeet_people_search, fitmeet_people_details, fitmeet_publication_sources, fitmeet_publication_prepare, fitmeet_publication_confirm, fitmeet_conversations_list, fitmeet_messages_list, fitmeet_chat_prepare, fitmeet_chat_confirm, fitmeet_message_prepare, fitmeet_message_confirm
-version: 1.1.0
+allowed-tools: fitmeet_profile_get, fitmeet_people_search, fitmeet_people_details, fitmeet_publication_sources, fitmeet_publication_prepare, fitmeet_publication_confirm, fitmeet_conversations_list, fitmeet_messages_list, fitmeet_chat_prepare, fitmeet_chat_confirm, fitmeet_message_prepare, fitmeet_message_confirm, fitmeet_groups_list, fitmeet_group_get, fitmeet_notifications_get, fitmeet_my_items_list, fitmeet_connection_feedback_get
+version: 1.2.1
 author: FitMeet
 ---
 
@@ -15,6 +15,12 @@ author: FitMeet
 帮助用户寻找合适的人、需求与能力，并在用户明确确认后发布内容或进行一对一私聊。FitMeet 服务负责账户权限、可见范围、搜索证据、封禁校验和最终写入；外部 Agent 负责理解意图、展示预览并取得确认。
 
 只有当前会话已连接 FitMeet 并完成浏览器 OAuth 授权后才能调用。不要索要、展示或粘贴密码、验证码、access token、refresh token 或客户端密钥。遇到 `401`、授权过期或撤销时，引导用户使用宿主的“重新连接”流程。
+
+## 配置服务
+
+用户明确要求连接 FitMeet 时，先读取 references/setup.md。宿主提供配置能力时使用该能力；允许编辑配置文件时，保留原配置并只合并 FitMeet 条目。不要推测配置文件路径，不覆盖其他连接器，不重复添加已有连接。
+
+没有配置权限或不支持远程 MCP/OAuth 时，提供 https://fitmeet.cn/developers/agent-setup 的手动步骤，并说明未完成状态。不要声称读取本 Skill 就已安装成功。
 
 ## 工具与权限
 
@@ -77,3 +83,19 @@ OAuth 同意不等于本次发布确认。用户修改任一字段后必须重�
 本连接器不会修改个人资料、自动创建或确认 Need、自动联系用户、自动发消息、自动邀请或自动发布。它不提供预约、支付、管理员、封禁、举报、日历写入或群发能力。发布和私聊只允许通过对应的 prepare → 用户明确确认 → confirm 流程，并且确认凭证绑定当前账号、客户端和 OAuth 授权，短期有效且只能消费一次。
 
 没有 `executed: true` 和最终回执时，不得声称已发布、已开聊或已发送。`fitmeet_chat_confirm` 返回 `messageSent: false` 时必须准确说明会话已开启但消息尚未发送。不得借用其他工具绕过这些边界。
+
+## 组局、提醒与连接反馈（MCP 2.1）
+
+以下工具需要单独的 `social:read` 授权；已有连接不会自动增加权限。缺权限时按宿主 OAuth 流程请求用户授权，再刷新工具列表。
+
+| 工具 | 能力 |
+| --- | --- |
+| `fitmeet_groups_list` | 查询本人的组局，或允许外部发现的公开组局；最多 40 条 |
+| `fitmeet_group_get` | 查看时间、地点、报名截止、完成状态；不读取群消息或名单 |
+| `fitmeet_notifications_get` | 查询本人私聊、群聊、邀请、变更未读汇总和通知设置 |
+| `fitmeet_my_items_list` | 按状态分页查询本人组局、邀请和联系事项 |
+| `fitmeet_connection_feedback_get` | 读取本人指定反馈，或最近 90 天最多 12 条反馈 |
+
+提醒是查询时的快照，不宣称正在后台持续监控。免打扰不等于未读数量为零。反馈只说明用户自己的经历，未知值不是否定，也不代表对方意愿。描述结果时使用中文状态名称，保留未知信息，不复述内部字段名。
+
+组局创建、加入、邀请、改期、完成，以及通知设置和反馈修改，通过返回的 FitMeet 网页入口和原有控件完成；以上新工具均不执行这些写操作。不要虚构新确认工具。不要用旧的私聊或发布确认工具代替组局操作。
