@@ -16,6 +16,10 @@
   <a href="https://github.com/liudejua27-blip/fitmeet-dsh-plugin/releases/latest">最新版</a>
 </p>
 
+FitMeet（适合见面）是 AI 驱动的真人社交平台，以线下见面和共同活动为核心，也支持线上交流与协作。普通用户可直接使用 [FitMeet 官网](https://fitmeet.cn/)，寻找朋友、各类搭子、合作伙伴或组局，无需安装本插件。
+
+小福是 FitMeet 产品内的 AI 助手。本仓库提供 DeepSeek Harness 接入渠道；只有希望从兼容的外部 Agent 使用 FitMeet 时，才需要配置插件并完成本人授权。网站功能与插件工具范围分别以实际入口和授权为准。运营主体为晤云科技（青岛）有限公司，详见[官方产品身份](https://fitmeet.cn/company)。
+
 ![FitMeet MCP](docs/images/fitmeet-mcp.png)
 
 这个项目不是把一个 URL 当作文件上传。它是一个符合 DeepSeek Harness Bundle 结构的可安装插件，包含：
