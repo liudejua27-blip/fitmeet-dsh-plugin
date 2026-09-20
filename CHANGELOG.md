@@ -1,4 +1,11 @@
-# 0.2.0
+# Changelog
+
+## 0.2.2 — 2026-09-20
+
+- Follow the conversation language from the first visible sentence, including before Skill loading.
+- Prefer concise outcome-focused replies and preserve complete returned URLs in labeled links.
+- Read capability publication state, expiry and URL using publication_sources; do not retry writes to check status.
+- Keep all existing OAuth scopes, automatic execution, previews and idempotency controls.
 
 ## 0.2.1 — FitMeet for DeepSeek Harness
 
@@ -7,12 +14,12 @@
 - Align bundled Skill descriptions with optional per-connection automatic execution; keep the existing MCP tools and permissions.
 
 
+## 0.2.0
+
 - English and Chinese npm distributions from one source, with localized Skills and routing.
 - Complete 17-tool documentation including groups, notifications, items and feedback.
 - Permission recovery and publication type, expiry and viewing links.
 - Stop repeated tool-discovery pagination while preserving existing tools.
-
-# Changelog
 
 ## 0.1.2 — 2026-09-12
 

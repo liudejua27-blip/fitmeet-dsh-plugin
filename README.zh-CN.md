@@ -27,7 +27,7 @@
 需要 Node.js 22.19+ 和 DeepSeek Harness。选择一个语言包安装，勿同时启用两个同名连接。
 
 ```sh
-npx --yes @deepseek-ai/dsh@latest plugin --profile web add fitmeet-dsh-plugin-zh@0.2.1
+npx --yes @deepseek-ai/dsh@latest plugin --profile web add fitmeet-dsh-plugin-zh@0.2.2
 npx --yes @deepseek-ai/dsh@latest web
 ```
 

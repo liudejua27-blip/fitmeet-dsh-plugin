@@ -27,7 +27,7 @@ Need a sports partner, someone with a useful skill, or people who share your int
 Requires Node.js 22.19+ and DeepSeek Harness. Install one language package; do not enable both against the same tool namespace.
 
 ```sh
-npx --yes @deepseek-ai/dsh@latest plugin --profile web add fitmeet-dsh-plugin@0.2.1
+npx --yes @deepseek-ai/dsh@latest plugin --profile web add fitmeet-dsh-plugin@0.2.2
 npx --yes @deepseek-ai/dsh@latest web
 ```
 

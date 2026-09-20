@@ -2,7 +2,17 @@
 
 [English](#english) | [简体中文](#简体中文)
 
-## English
+## 0.2.2 update / 0.2.2 更新
+
+The server now returns capability publication state, expiry and the exact viewing URL. Isolated PostgreSQL tests cover unpublished, active, expired, changed-source and terminal states, including owner isolation (4/4). The existing MCP unit suite passes (37/37); plugin checks pass (14/14).
+
+An initial candidate still opened in English and was not accepted. The final candidate uses a separate always-loaded response-style section, including the first sentence before loading a Skill. Three real Harness rounds (Chinese → English → Chinese) each used one publication-source query and preserved the full URL. Chinese opening was observed; final replies were 2–3 short sentences, about 3/1/1 seconds per round. These are small samples, not a latency or zero-error guarantee. Some replies still repeat ACTIVE or add a redundant read-only disclaimer; follow-up evaluation remains necessary. The host's expanded reasoning display is separate from user-facing progress and can still be English.
+
+服务端已补能力发布状态、到期时间与完整链接；4 项隔离数据库回归、37 项 MCP 单元测试、14 项插件检查通过。初版候选仍英文开场，没有算通过；最终候选把回复约定作为独立常驻段落加载。真实 Harness 三轮中文→英文→中文测试，中文开场生效，每轮只查询一次发布来源，链接目标完整，最终回复约 2–3 个短句。仍偶有内部状态枚举和多余的只读说明；宿主展开后的推理文字也可能是英文，不把小样本表述为彻底消除所有回复问题。
+
+Both npm distributions are 0.2.2; Skill 1.3.2 is mirrored in public integration docs. The 0.2.1 results below remain historical evidence.
+
+## English — 0.2.1 baseline
 
 The installed English plugin 0.2.1 was exercised inside the official DeepSeek Harness 0.1.5-rc.2 web host against FitMeet production, using owner-authorized test accounts.
 

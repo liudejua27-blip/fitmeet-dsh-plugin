@@ -1,7 +1,7 @@
 {
   "name": "fitmeet-dsh-plugin",
-  "version": "0.2.1",
-  "description": "FitMeet for DeepSeek Harness — Find people to do things with: shared interests, sports partners and people who can help. Connect FitMeet and start with one request.",
+  "version": "0.2.2",
+  "description": "FitMeet for DeepSeek Harness \u2014 Find people to do things with: shared interests, sports partners and people who can help. Connect FitMeet and start with one request.",
   "type": "module",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
