@@ -94,3 +94,5 @@ pnpm build:distributions
 ```
 
 `dist/en` 和 `dist/zh-CN` 从同一源码生成，发布文件采用明确白名单。npm 发布、GitHub 更新、生产部署和客户端验收分别记录，不代表官方插件商店收录。
+
+[真实 Harness 验收记录](https://github.com/liudejua27-blip/fitmeet-dsh-plugin/blob/main/ACCEPTANCE.md)：读取、自动发布/测试消息和进程重启恢复已验证；覆盖范围与剩余问题分别记录。

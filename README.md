@@ -94,3 +94,5 @@ pnpm build:distributions
 ```
 
 `dist/en` and `dist/zh-CN` are generated from one source with an explicit public-file allowlist. npm publication, GitHub updates, production deployment and client acceptance are separate stages; none implies official marketplace listing.
+
+[Real Harness acceptance](https://github.com/liudejua27-blip/fitmeet-dsh-plugin/blob/main/ACCEPTANCE.md): authenticated reads, automatic publication/test messaging, and process restart recovery verified; coverage and remaining limitations are recorded separately.
