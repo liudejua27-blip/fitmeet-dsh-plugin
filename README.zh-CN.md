@@ -140,3 +140,5 @@ pnpm build:distributions
 [skills.sh](https://skills.sh/liudejua27-blip/human-network/fitmeet) · [Official MCP Registry](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.liudejua27-blip%2Ffitmeet/versions/2.2.0) · [Smithery](https://smithery.ai/servers/liudejua27/fitmeet)
 
 Glama 已提交，公开收录待核实。 [Verification record](https://github.com/liudejua27-blip/human-network/blob/main/DISTRIBUTION.md)
+
+维护入口：[中英文包发布与更新流程](https://github.com/liudejua27-blip/fitmeet-dsh-plugin/blob/main/RELEASING.md)。
