@@ -1,14 +1,45 @@
 <p align="center"><img src="https://raw.githubusercontent.com/liudejua27-blip/fitmeet-dsh-plugin/main/assets/fitmeet-icon.png" alt="FitMeet" width="88"></p>
 
-# FitMeet — Turn intent into real human connection
+# FitMeet for DeepSeek Harness
 
 [English](README.en.md) | [简体中文](README.zh-CN.md)
 
 **Find people. Discover shared interests. Make plans happen.**
 
-FitMeet is a personal Agent and human network built around what you want to do. Tell your Agent what you need: a badminton partner, someone with a useful skill, or a group to join. FitMeet gives it tools to search the network and help you take the next step.
-
 **[Try FitMeet](https://fitmeet.cn) · [Connect your Agent](https://fitmeet.cn/mcp) · [English npm](https://www.npmjs.com/package/fitmeet-dsh-plugin) · [中文 npm](https://www.npmjs.com/package/fitmeet-dsh-plugin-zh)**
+
+## Give DeepSeek Harness a way to connect you with people
+
+Need a sports partner, someone with a useful skill, or people who share your interests? Add FitMeet to Harness and move from describing a need to searching, reviewing candidates and contacting people in one conversation.
+
+- **Find your people**: search people, public needs and capabilities, then review the evidence.
+- **Put your needs out there**: publish a confirmed need or capability and get a link to the result.
+- **Keep the connection going**: check conversations, gatherings and reminders, and reach out with your permission.
+
+## Get started
+
+1. Install the English plugin below and start Harness.
+2. Sign in on the FitMeet page and choose your permissions.
+3. Back in chat, say: **“Use FitMeet to find badminton partners in Qingdao.”**
+
+## Install
+
+Requires Node.js 22.19+ and DeepSeek Harness. Install one language package; do not enable both against the same tool namespace.
+
+```sh
+npx --yes @deepseek-ai/dsh@latest plugin --profile web add fitmeet-dsh-plugin@0.2.1
+npx --yes @deepseek-ai/dsh@latest web
+```
+
+[English npm](https://www.npmjs.com/package/fitmeet-dsh-plugin) | [Chinese npm](https://www.npmjs.com/package/fitmeet-dsh-plugin-zh)
+
+On first start, sign in to FitMeet in the browser and review the requested permissions. No token copying is needed. The default requests six scopes; a nonempty subset can be configured. New permissions are never added to existing grants silently. Credentials are stored by the local Harness credential service.
+
+General MCP clients such as WorkBuddy and Doubao connect directly to the remote endpoint; this npm package is specifically a Harness plugin:
+
+```text
+https://api.fitmeet.cn/api/v1/mcp
+```
 
 ## Try these requests
 
@@ -25,31 +56,12 @@ These are example requests, not promises of available matches. Search uses the i
 | --- | --- |
 | FitMeet directly | [Open FitMeet](https://fitmeet.cn) |
 | WorkBuddy, Doubao or another compatible MCP client | Add `https://api.fitmeet.cn/api/v1/mcp` and sign in; [setup guide](https://fitmeet.cn/mcp) |
-| DeepSeek Harness | Install one of the FitMeet npm plugins below |
+| DeepSeek Harness | Use the commands above to install one FitMeet language package |
 
 ## Automatic execution and available tools
 
 New connections request all six scopes; fresh tool lists contain only tools covered by the grant. Cached lists may need refreshing. Enable automatic publishing, chats and messages separately on the FitMeet consent page. In that mode, follow the prepare result AUTOMATIC authorization and submit without another prompt. Otherwise the per-action confirmation flow below applies. Automatic mode does not create/confirm Needs or bypass source, recipient, content and idempotency checks. Revoking the connection stops subsequent automatic execution.
 
-
-## Install
-
-Requires Node.js 22.19+ and DeepSeek Harness. Install one language package; do not enable both against the same tool namespace.
-
-```sh
-npx --yes @deepseek-ai/dsh@latest plugin --profile web add fitmeet-dsh-plugin@0.2.0
-npx --yes @deepseek-ai/dsh@latest web
-```
-
-[English npm](https://www.npmjs.com/package/fitmeet-dsh-plugin) | [Chinese npm](https://www.npmjs.com/package/fitmeet-dsh-plugin-zh)
-
-On first start, sign in to FitMeet in the browser and review the requested permissions. No token copying is needed. The default requests six scopes; a nonempty subset can be configured. New permissions are never added to existing grants silently. Credentials are stored by the local Harness credential service.
-
-General MCP clients such as WorkBuddy and Doubao connect directly to the remote endpoint; this npm package is specifically a Harness plugin:
-
-```text
-https://api.fitmeet.cn/api/v1/mcp
-```
 
 ## Tools and scope
 

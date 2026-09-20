@@ -39,7 +39,7 @@ export const FITMEET_SCOPES = 'profile:read people:search hall:publish messages:
 export const FITMEET_CREDENTIAL_REF = 'FITMEET_MCP_OAUTH'
 const SKILL_URL = new URL(DISTRIBUTION_LOCALE === 'zh-CN' ? '../skills/fitmeet/SKILL.md' : '../skills/fitmeet/SKILL.en.md', import.meta.url)
 const SKILL_DIRECTORY = fileURLToPath(new URL('../skills/fitmeet/', import.meta.url))
-const SKILL_DESCRIPTION = DISTRIBUTION_LOCALE === 'zh-CN' ? '在授权范围内寻找人物与需求，读取组局、提醒、事项和反馈；发布、开聊与发消息须展示准确预览并逐次确认。' : 'Use FitMeet to find social companions, read visible gatherings and personal follow-up information, and, only after an exact preview and explicit current-turn confirmation, publish, open a direct chat, or send a message.'
+const SKILL_DESCRIPTION = DISTRIBUTION_LOCALE === 'zh-CN' ? 'FitMeet — 让想法找到一起行动的人。找同好、约球友、找人帮忙，查看组局与提醒，并按你的授权发布和私聊。试试：“帮我找青岛的羽毛球球友”。' : 'FitMeet — Find people to do things with. Discover shared interests, sports partners and people who can help; check gatherings and reminders, and publish or message with your permission. Try: “Find badminton partners in Qingdao.”'
 
 /** User configuration for one OAuth-protected Streamable HTTP MCP server. */
 export interface Config {
@@ -132,7 +132,7 @@ export async function registerFitMeetSkill(ctx: Context): Promise<void> {
     skillCtx.skills.register({
       name: 'fitmeet',
       description: SKILL_DESCRIPTION,
-      whenToUse: DISTRIBUTION_LOCALE === 'zh-CN' ? '用户需要在 FitMeet 找人、读组局与提醒、查询个人事项或反馈，或确认后发布和私聊时使用。' : 'Use when the user wants to find people or public needs/capabilities in FitMeet, review their FitMeet profile, publish after confirmation, manage one-to-one FitMeet conversations, or read visible groups, personal notifications, items and feedback.',
+      whenToUse: DISTRIBUTION_LOCALE === 'zh-CN' ? '用户想找同好、球友、活动搭子或能提供帮助的人，搜索公开需求与能力，查看自己的 FitMeet 资料、组局、提醒或消息，或通过 FitMeet 发布和联系他人时使用。按 prepare 回执决定自动执行或请求确认。' : 'Use for finding people with shared interests, sports or activity partners and people who can help; searching public needs and capabilities; checking FitMeet profile, gatherings, reminders or messages; and publishing or contacting people through FitMeet. Follow the prepare result for automatic execution or confirmation.',
       source: 'bundled',
       resourceBase: { kind: 'directory', path: SKILL_DIRECTORY },
       content,

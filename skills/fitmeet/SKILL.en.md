@@ -1,15 +1,15 @@
 ---
 name: fitmeet
 display_name: FitMeet People & Needs
-description: Search people and needs, read visible groups and personal follow-up information. Publishing and direct messages require a preview and explicit confirmation for each action.
+description: FitMeet helps you find people to do things with — shared interests, sports partners and people who can help. Read gatherings and reminders, and publish or message under your connection permissions.
 allowed-tools: fitmeet_profile_get, fitmeet_people_search, fitmeet_people_details, fitmeet_publication_sources, fitmeet_publication_prepare, fitmeet_publication_confirm, fitmeet_conversations_list, fitmeet_messages_list, fitmeet_chat_prepare, fitmeet_chat_confirm, fitmeet_message_prepare, fitmeet_message_confirm, fitmeet_groups_list, fitmeet_group_get, fitmeet_notifications_get, fitmeet_my_items_list, fitmeet_connection_feedback_get
-version: 1.3.0
+version: 1.3.1
 author: FitMeet
 ---
 
 # FitMeet
 
-Use FitMeet to find people, needs and capabilities, read groups and personal follow-up information, and act after the user's confirmation. FitMeet enforces account permissions, visibility, evidence freshness, blocking and final writes. The external Agent interprets the goal and presents accurate results and previews.
+Use FitMeet to find people, needs and capabilities, read groups and personal follow-up information, and act according to the connection authorization mode. FitMeet enforces account permissions, visibility, evidence freshness, blocking and final writes. The external Agent interprets the goal and presents accurate results and previews.
 
 ## Connect
 

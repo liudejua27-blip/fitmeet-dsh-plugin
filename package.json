@@ -1,7 +1,7 @@
 {
   "name": "fitmeet-dsh-plugin",
-  "version": "0.2.0",
-  "description": "FitMeet connects your Agent to real people, shared interests and activities. MCP + Skills for DeepSeek Harness, with OAuth and bilingual guidance.",
+  "version": "0.2.1",
+  "description": "FitMeet for DeepSeek Harness — Find people to do things with: shared interests, sports partners and people who can help. Connect FitMeet and start with one request.",
   "type": "module",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",

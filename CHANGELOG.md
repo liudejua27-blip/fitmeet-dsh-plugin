@@ -1,5 +1,12 @@
 # 0.2.0
 
+## 0.2.1 — FitMeet for DeepSeek Harness
+
+- Make the English and Chinese plugin descriptions lead with people, interests and practical use cases.
+- Put Harness installation, browser sign-in and a copyable first request near the top of both READMEs.
+- Align bundled Skill descriptions with optional per-connection automatic execution; keep the existing MCP tools and permissions.
+
+
 - English and Chinese npm distributions from one source, with localized Skills and routing.
 - Complete 17-tool documentation including groups, notifications, items and feedback.
 - Permission recovery and publication type, expiry and viewing links.

@@ -8,7 +8,7 @@ for(const locale of ['en','zh-CN']){
   const dir=resolve(root,'dist',locale);await rm(dir,{recursive:true,force:true});await mkdir(dir,{recursive:true});
   // Explicit public allowlist: credentials, tests, source checkout and local state never enter artifacts.
   for(const file of ['lib','skills/fitmeet','assets/fitmeet-icon.png','cordis.patch.yml','mcp.json','README.md','README.en.md','README.zh-CN.md','LICENSE','THIRD_PARTY_NOTICES.md','SECURITY.md','service.json','CHANGELOG.md']) await cp(file,resolve(dir,file),{recursive:true});
-  const pkg={...base,name,fitmeet:{locale},scripts:{},description:locale==='en'?base.description:'FitMeet：让想法找到一起行动的人。为 Agent 连接真实人物、同好与活动的中文 MCP + Skill 插件，支持授权发布与私聊。'};
+  const pkg={...base,name,fitmeet:{locale},scripts:{},description:locale==='en'?base.description:'FitMeet for DeepSeek Harness — 找同好、约球友、找人帮忙，让想法找到一起行动的人。安装并连接 FitMeet，从一句话开始找人、发布和私聊。'};
   await writeFile(resolve(dir,'package.json'),JSON.stringify(pkg,null,2)+'\n');
   await writeFile(resolve(dir,'lib/distribution.js'),`export const DISTRIBUTION_LOCALE = ${JSON.stringify(locale)};\nexport const DISTRIBUTION_NAME = ${JSON.stringify(name)};\n`);
   // No stale source map for a generated distribution module.

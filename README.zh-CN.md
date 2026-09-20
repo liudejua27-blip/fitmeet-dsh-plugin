@@ -1,14 +1,45 @@
 <p align="center"><img src="https://raw.githubusercontent.com/liudejua27-blip/fitmeet-dsh-plugin/main/assets/fitmeet-icon.png" alt="FitMeet" width="88"></p>
 
-# FitMeet — 让想法找到一起行动的人
+# FitMeet for DeepSeek Harness
 
 [English](README.en.md) | [简体中文](README.zh-CN.md)
 
 **找同好、找球友、找能帮你的人，让连接从一句话开始。**
 
-FitMeet 是围绕真实需求建立的个人 Agent 与人际网络。告诉 Agent 你想做什么：找个羽毛球球友、寻找能提供帮助的人，或看看可以参加的组局。通过 FitMeet，它可以搜索人物与公开需求，帮你推进下一步。
-
 **[立即使用 FitMeet](https://fitmeet.cn) · [连接你的 Agent](https://fitmeet.cn/mcp) · [中文 npm](https://www.npmjs.com/package/fitmeet-dsh-plugin-zh) · [English npm](https://www.npmjs.com/package/fitmeet-dsh-plugin)**
+
+## 让 DeepSeek Harness 帮你找到一起行动的人
+
+想打球却缺个搭子？有件事想找人帮忙？把 FitMeet 加入 Harness，从描述需求到搜索人选、查看详情、联系对方，在同一段对话里推进。
+
+- **找同好与球友**：搜索人物、公开需求和能力，查看匹配依据。
+- **把需求带给更多人**：发布已确认的需求或能力，拿到可查看的结果链接。
+- **把连接继续下去**：查看私聊、组局和提醒，按授权发起联系。
+
+## 现在开始
+
+1. 安装下方中文插件，启动 Harness。
+2. 在弹出的 FitMeet 页面登录并选择权限。
+3. 回到对话，发送：**“使用 FitMeet，帮我找青岛的羽毛球球友。”**
+
+## 安装
+
+需要 Node.js 22.19+ 和 DeepSeek Harness。选择一个语言包安装，勿同时启用两个同名连接。
+
+```sh
+npx --yes @deepseek-ai/dsh@latest plugin --profile web add fitmeet-dsh-plugin-zh@0.2.1
+npx --yes @deepseek-ai/dsh@latest web
+```
+
+[中文 npm](https://www.npmjs.com/package/fitmeet-dsh-plugin-zh) · [English npm](https://www.npmjs.com/package/fitmeet-dsh-plugin)
+
+首次启动在浏览器登录 FitMeet、查看并决定授权范围，无需复制 Token。默认请求六类权限，也可配置非空 scope 子集；新功能不会自动增加旧授权。凭据由本机 Harness credential service 保存。
+
+豆包、WorkBuddy 等通用 MCP 客户端直接配置远程服务，不需要这个 Harness 插件：
+
+```text
+https://api.fitmeet.cn/api/v1/mcp
+```
 
 ## 连好后，试着这样说
 
@@ -25,31 +56,12 @@ FitMeet 是围绕真实需求建立的个人 Agent 与人际网络。告诉 Agen
 | --- | --- |
 | 直接体验 FitMeet | [打开 FitMeet](https://fitmeet.cn) |
 | 豆包、WorkBuddy 等兼容 MCP 客户端 | 添加 `https://api.fitmeet.cn/api/v1/mcp` 并登录；[连接指南](https://fitmeet.cn/mcp) |
-| DeepSeek Harness | 安装下方一个语言版本的 FitMeet npm 插件 |
+| DeepSeek Harness | 使用上方命令，安装一个语言版本的 FitMeet 插件 |
 
 ## 自动执行与工具可用性
 
 新连接默认请求完整六权限，刷新后的工具列表只返回已授权工具。旧客户端缓存可能需要刷新。授权页可独立开启自动发布、开聊和发消息；开启后按 prepare 的 AUTOMATIC 回执连续提交，不再逐次询问。未开启的连接仍使用下文逐次确认流程。自动模式不创建或确认 Need，不绕过来源、对象、内容与幂等校验。撤销连接可停止后续自动执行。
 
-
-## 安装
-
-需要 Node.js 22.19+ 和 DeepSeek Harness。选择一个语言包安装，勿同时启用两个同名连接。
-
-```sh
-npx --yes @deepseek-ai/dsh@latest plugin --profile web add fitmeet-dsh-plugin-zh@0.2.0
-npx --yes @deepseek-ai/dsh@latest web
-```
-
-[中文 npm](https://www.npmjs.com/package/fitmeet-dsh-plugin-zh) · [English npm](https://www.npmjs.com/package/fitmeet-dsh-plugin)
-
-首次启动在浏览器登录 FitMeet、查看并决定授权范围，无需复制 Token。默认请求六类权限，也可配置非空 scope 子集；新功能不会自动增加旧授权。凭据由本机 Harness credential service 保存。
-
-豆包、WorkBuddy 等通用 MCP 客户端直接配置远程服务，不需要这个 Harness 插件：
-
-```text
-https://api.fitmeet.cn/api/v1/mcp
-```
 
 ## 工具与范围
 
