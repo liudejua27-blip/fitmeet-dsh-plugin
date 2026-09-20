@@ -1,12 +1,44 @@
 <p align="center"><img src="https://raw.githubusercontent.com/liudejua27-blip/fitmeet-dsh-plugin/main/assets/fitmeet-icon.png" alt="FitMeet" width="88"></p>
+<h1 align="center">FitMeet</h1>
+<h3 align="center">Personal Agent Network</h3>
+<p align="center">Speak what you need.<br>Let your Agent find the right people.</p>
+<p align="center"><a href="https://fitmeet.cn">Website</a> · <a href="https://fitmeet.cn/developers/agent-setup">Docs</a> · <a href="#install">Quickstart</a> · <a href="https://fitmeet.cn/mcp">MCP</a> · <a href="https://github.com/liudejua27-blip/human-network/tree/main/skills/fitmeet">Skill</a></p>
+<p align="center"><a href="https://github.com/liudejua27-blip/fitmeet-dsh-plugin/stargazers"><img alt="GitHub Stars" src="https://img.shields.io/github/stars/liudejua27-blip/fitmeet-dsh-plugin?style=flat"></a>
+<a href="https://www.npmjs.com/package/fitmeet-dsh-plugin"><img alt="npm version" src="https://img.shields.io/npm/v/fitmeet-dsh-plugin"></a>
+<a href="https://www.npmjs.com/package/fitmeet-dsh-plugin"><img alt="npm downloads" src="https://img.shields.io/npm/dm/fitmeet-dsh-plugin"></a>
+<a href="https://github.com/liudejua27-blip/fitmeet-dsh-plugin/releases"><img alt="GitHub Release" src="https://img.shields.io/github/v/release/liudejua27-blip/fitmeet-dsh-plugin"></a>
+<a href="https://github.com/liudejua27-blip/fitmeet-dsh-plugin/blob/main/package.json"><img alt="Node.js 22.19+" src="https://img.shields.io/badge/Node.js-22.19%2B-339933"></a>
+<a href="https://github.com/liudejua27-blip/fitmeet-dsh-plugin"><img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white"></a>
+<a href="https://fitmeet.cn/mcp"><img alt="MCP" src="https://img.shields.io/badge/MCP-Streamable_HTTP-111111"></a>
+<a href="https://skills.sh/liudejua27-blip/human-network"><img alt="skills.sh" src="https://skills.sh/b/liudejua27-blip/human-network"></a>
+<a href="https://github.com/liudejua27-blip/fitmeet-dsh-plugin/blob/main/LICENSE"><img alt="License MIT" src="https://img.shields.io/badge/License-MIT-blue"></a></p>
 
-# FitMeet for DeepSeek Harness
+[English](README.md) · [简体中文](README.zh-CN.md)
 
-[English](README.en.md) | [简体中文](README.zh-CN.md)
+**The FitMeet plugin for DeepSeek Harness · English and Chinese editions.**
 
-**Find people. Discover shared interests. Make plans happen.**
+## Install
 
-**[Try FitMeet](https://fitmeet.cn) · [Connect your Agent](https://fitmeet.cn/mcp) · [English npm](https://www.npmjs.com/package/fitmeet-dsh-plugin) · [中文 npm](https://www.npmjs.com/package/fitmeet-dsh-plugin-zh)**
+**Add the FitMeet Skill** to teach your Agent how to use FitMeet:
+
+```sh
+npx skills add liudejua27-blip/human-network --skill fitmeet
+```
+
+**DeepSeek Harness plugin** (Node.js 22.19+; choose one language edition):
+
+```sh
+npx --yes @deepseek-ai/dsh@latest plugin --profile web add fitmeet-dsh-plugin@0.2.2
+npx --yes @deepseek-ai/dsh@latest web
+```
+
+**Other MCP clients:** add this remote URL, then sign in to your own FitMeet account in the browser.
+
+```text
+https://api.fitmeet.cn/api/v1/mcp
+```
+
+The Skill provides guidance. Connect MCP and complete authorization to use the tools. These are alternative entry points; general MCP clients do not need the Harness plugin.
 
 ## Give DeepSeek Harness a way to connect you with people
 
@@ -21,25 +53,6 @@ Need a sports partner, someone with a useful skill, or people who share your int
 1. Install the English plugin below and start Harness.
 2. Sign in on the FitMeet page and choose your permissions.
 3. Back in chat, say: **“Use FitMeet to find badminton partners in Qingdao.”**
-
-## Install
-
-Requires Node.js 22.19+ and DeepSeek Harness. Install one language package; do not enable both against the same tool namespace.
-
-```sh
-npx --yes @deepseek-ai/dsh@latest plugin --profile web add fitmeet-dsh-plugin@0.2.2
-npx --yes @deepseek-ai/dsh@latest web
-```
-
-[English npm](https://www.npmjs.com/package/fitmeet-dsh-plugin) | [Chinese npm](https://www.npmjs.com/package/fitmeet-dsh-plugin-zh)
-
-On first start, sign in to FitMeet in the browser and review the requested permissions. No token copying is needed. The default requests six scopes; a nonempty subset can be configured. New permissions are never added to existing grants silently. Credentials are stored by the local Harness credential service.
-
-General MCP clients such as WorkBuddy and Doubao connect directly to the remote endpoint; this npm package is specifically a Harness plugin:
-
-```text
-https://api.fitmeet.cn/api/v1/mcp
-```
 
 ## Try these requests
 
@@ -96,3 +109,9 @@ pnpm build:distributions
 `dist/en` and `dist/zh-CN` are generated from one source with an explicit public-file allowlist. npm publication, GitHub updates, production deployment and client acceptance are separate stages; none implies official marketplace listing.
 
 [Real Harness acceptance](https://github.com/liudejua27-blip/fitmeet-dsh-plugin/blob/main/ACCEPTANCE.md): authenticated reads, automatic publication/test messaging, and process restart recovery verified; coverage and remaining limitations are recorded separately.
+
+## Connect with FitMeet
+
+[Website](https://fitmeet.cn) · [Documentation](https://fitmeet.cn/developers/agent-setup) · [Email](mailto:15253005312@163.com)
+
+WeChat: **angji01**. Discord and X are not available yet.
