@@ -2,7 +2,7 @@
   "format": "fitmeet-public-service-v1",
   "name": "FitMeet",
   "description": "由 AI Agent 帮助表达需求、寻找真实的人、发现组局并建立联系；支持个人授权的 MCP 搜索、读取及确认后发布和私聊。",
-  "updatedAt": "2026-09-12",
+  "updatedAt": "2026-09-20",
   "homepage": "https://fitmeet.cn",
   "documentation": "https://fitmeet.cn/developers/agent-setup",
   "endpoint": "https://api.fitmeet.cn/api/v1/mcp",
@@ -13,6 +13,14 @@
     "pkce": "S256",
     "sharedCredentials": false,
     "optionalScopes": [
+      "profile:read",
+      "people:search",
+      "hall:publish",
+      "messages:read",
+      "messages:write",
+      "social:read"
+    ],
+    "defaultRequestedScopes": [
       "profile:read",
       "people:search",
       "hall:publish",
@@ -44,7 +52,7 @@
   ],
   "externalDiscovery": "profile-owner opt-in and revocable",
   "formatNote": "FitMeet-maintained public documentation, not a universal Agent discovery standard.",
-  "serverVersion": "2.1.0",
+  "serverVersion": "2.2.0",
   "toolCount": 17,
   "socialReadTools": [
     "fitmeet_groups_list",
@@ -159,5 +167,20 @@
         "messages:write"
       ]
     }
-  ]
+  ],
+  "skillEnglish": "https://fitmeet.cn/skills/fitmeet/SKILL.en.md",
+  "languages": [
+    "zh-CN",
+    "en"
+  ],
+  "actionAuthorization": {
+    "default": "per-action-confirmation",
+    "optional": "owner-consented-per-connection-automation",
+    "prepareRequired": true,
+    "automaticConfirmParameter": {
+      "authorizationMode": "AUTOMATIC"
+    },
+    "revocable": true
+  },
+  "toolDiscovery": "Only tools covered by the current grant are listed; public catalog contains all supported tools."
 }

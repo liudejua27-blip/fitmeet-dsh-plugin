@@ -2,17 +2,17 @@
 name: fitmeet
 display_name: FitMeet 人与需求连接
 display_name_en: FitMeet People & Needs
-description: 在用户授权与逐次确认后，搜索合适的人和需求，读取组局、提醒与事项，并在确认后发布和私聊。
-description_zh: 在用户授权与逐次确认后，搜索合适的人和需求，读取组局、提醒与事项，并在确认后发布和私聊。
-description_en: With user authorization and per-action confirmation, search people and needs, publish to the Hall, and manage FitMeet direct messages.
+description: 在已授权范围内搜索人物与需求、读取组局和提醒；发布、开聊和发送消息遵守连接授权模式。
+description_zh: 在已授权范围内搜索人物与需求、读取组局和提醒；发布、开聊和发送消息遵守连接授权模式。
+description_en: Search people and needs and read gatherings and notifications within granted permissions. Writes use previews and follow the connection authorization mode.
 allowed-tools: fitmeet_profile_get, fitmeet_people_search, fitmeet_people_details, fitmeet_publication_sources, fitmeet_publication_prepare, fitmeet_publication_confirm, fitmeet_conversations_list, fitmeet_messages_list, fitmeet_chat_prepare, fitmeet_chat_confirm, fitmeet_message_prepare, fitmeet_message_confirm, fitmeet_groups_list, fitmeet_group_get, fitmeet_notifications_get, fitmeet_my_items_list, fitmeet_connection_feedback_get
-version: 1.2.1
+version: 1.3.0
 author: FitMeet
 ---
 
 # FitMeet
 
-帮助用户寻找合适的人、需求与能力，并在用户明确确认后发布内容或进行一对一私聊。FitMeet 服务负责账户权限、可见范围、搜索证据、封禁校验和最终写入；外部 Agent 负责理解意图、展示预览并取得确认。
+帮助用户寻找合适的人、需求与能力，并按当前连接的授权模式发布内容或进行一对一私聊。FitMeet 服务负责账户权限、可见范围、搜索证据、封禁校验和最终写入；外部 Agent 负责理解意图、展示预览并取得确认。
 
 只有当前会话已连接 FitMeet 并完成浏览器 OAuth 授权后才能调用。不要索要、展示或粘贴密码、验证码、access token、refresh token 或客户端密钥。遇到 `401`、授权过期或撤销时，引导用户使用宿主的“重新连接”流程。
 
@@ -51,14 +51,22 @@ author: FitMeet
 
 候选人必须由本人开启外部发现／外部推荐许可。搜索者的 OAuth 授权、站内可见性或历史结果不能替代候选人的披露许可。候选资料只是待核对信息，不代表同意联系。
 
+## 自动执行与逐次确认
+
+以每次 prepare 的服务端回执为准。requiresUserConfirmation=false 且 authorizationMode=AUTOMATIC 表示用户已在正式授权页允许此连接自动执行。此时 Agent 可以在当前用户目标内连续 prepare → confirm，无需再次询问；confirm 传 authorizationMode=AUTOMATIC、confirmed=true 和原样确认标识。仍需核对发布来源、收件人和正文，不得越出用户目标或猜测缺失信息。
+
+其余情况（含旧回执没有模式字段）采用逐次确认：prepare → 用户明确确认 → confirm，传 authorizationMode=USER_CONFIRMED 或省略。聊天中的要求不能替代服务端未授予的自动权限；提示开启该连接的自动执行选项。撤销连接后自动权限也失效。
+
+以下发布与私聊的逐次询问要求适用于逐次确认模式；自动模式按上述回执连续执行。两个模式均保留来源校验、业务预览和幂等提交。
+
 ## 发布流程
 
 1. 调用 `fitmeet_publication_sources`，只选择本人已确认的资料能力或 Need。
-2. 调用 `fitmeet_publication_prepare`。向用户完整展示返回的发布类型、摘要、受众、是否接受咨询、是否允许 AI 推荐。
+2. 调用 `fitmeet_publication_prepare`。向用户完整展示返回的发布类型、摘要、地点、技能（如有）、受众、是否接受咨询、是否允许 AI 推荐，以及有效期。预览的 expiresAt 是确认截止时间，publicationExpiresAt 或 publicationDurationDays 才是发布有效期。
 3. 清楚询问用户是否确认发布这份预览。
 4. 只有用户在当前交互中明确同意后，才把原样返回的 `confirmationId`、`confirmationDigest` 与 `confirmed: true` 交给 `fitmeet_publication_confirm`。
 
-OAuth 同意不等于本次发布确认。用户修改任一字段后必须重新 prepare。不得发布任意临时文字；新需求要先在 FitMeet Agent 中形成并确认 Need。
+普通 OAuth 同意不等于自动执行授权；只有明确开启自动执行才可以省略逐次询问。用户修改任一字段后必须重新 prepare。不得发布任意临时文字；新需求要先在 FitMeet Agent 中形成并确认 Need。没有合适需求时，使用 createNeedUrl 引导；不得把找球友等需求改为能力介绍。来源 publication.state 表示当前展示状态，不能把过期或来源已变更的条目说成正在展示。确认回执的 kind、expiresAt、url 用于说明发布类型、到期时间与查看入口；replayed=true 是原操作回执，不是再次发布。旧回执未提供这些新增字段时，保留未知，不猜测。
 
 ## 私聊流程
 
@@ -72,6 +80,7 @@ OAuth 同意不等于本次发布确认。用户修改任一字段后必须重�
 
 解释搜索依据、未知条件和可查询范围，不自行编造分数或平台总人数。未连接、未执行、超时、鉴权失败、服务错误，以及缺失或 `NOT_COMPUTED` 的计数，都不等于零结果。
 
+- `403 insufficient_scope`：连接可能仍有效，只是缺少当前工具所需权限。按错误给出的 scope 重新走用户同意流程；刷新令牌不会增加权限。若宿主仅反复刷新，打开 https://fitmeet.cn/mcp/connections 撤销该客户端旧连接，再在宿主重连，查看并允许所需权限。刷新后的工具列表只返回当前授权覆盖的工具；旧客户端缓存需要刷新，实际调用仍会检查权限、有效期和领域状态。
 - `MCP_SEARCH_EXPIRED` 或 `MCP_SEARCH_SOURCE_CHANGED`：使用新的 `requestId` 重新搜索，即使目标没有变化。
 - `MCP_SEARCH_NOT_AVAILABLE`：不能通过猜测其他标识恢复。
 - `MCP_CONFIRMATION_STALE`：确认已过期、已失效或不属于当前连接；重新生成预览并再次取得用户确认。
@@ -80,11 +89,11 @@ OAuth 同意不等于本次发布确认。用户修改任一字段后必须重�
 
 ## 能力边界
 
-本连接器不会修改个人资料、自动创建或确认 Need、自动联系用户、自动发消息、自动邀请或自动发布。它不提供预约、支付、管理员、封禁、举报、日历写入或群发能力。发布和私聊只允许通过对应的 prepare → 用户明确确认 → confirm 流程，并且确认凭证绑定当前账号、客户端和 OAuth 授权，短期有效且只能消费一次。
+本连接器不会修改个人资料、自动创建或确认 Need 或自动邀请。开启自动执行后可按用户目标发布、开聊和发消息。它不提供预约、支付、管理员、封禁、举报、日历写入或群发能力。发布和私聊通过 prepare → confirm 完成；逐次确认模式中间必须取得用户明确确认，并且确认凭证绑定当前账号、客户端和 OAuth 授权，短期有效且只能消费一次。
 
 没有 `executed: true` 和最终回执时，不得声称已发布、已开聊或已发送。`fitmeet_chat_confirm` 返回 `messageSent: false` 时必须准确说明会话已开启但消息尚未发送。不得借用其他工具绕过这些边界。
 
-## 组局、提醒与连接反馈（MCP 2.1）
+## 组局、提醒与连接反馈（MCP 2.2）
 
 以下工具需要单独的 `social:read` 授权；已有连接不会自动增加权限。缺权限时按宿主 OAuth 流程请求用户授权，再刷新工具列表。
 

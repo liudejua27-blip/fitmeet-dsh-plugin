@@ -8,6 +8,7 @@
  * @module fitmeet-dsh-plugin
  */
 
+import { DISTRIBUTION_LOCALE, DISTRIBUTION_NAME } from './distribution.js'
 import { readFile } from 'node:fs/promises'
 import { fileURLToPath } from 'node:url'
 import type { Context } from '@deepseek-ai/cordis'
@@ -23,7 +24,7 @@ export type { McpResult } from './tools.js'
 export type { ReconnectConfig, ResolvedReconnectPolicy } from './connection.js'
 
 /** Cordis plugin name used by loader diagnostics. */
-export const name = 'fitmeet-dsh-plugin'
+export const name = DISTRIBUTION_NAME
 
 /** Services required by the OAuth client. */
 export const inject = ['tools', 'credentials']
@@ -36,9 +37,9 @@ export const FITMEET_SERVER_NAME = 'fitmeet'
 export const FITMEET_MCP_URL = 'https://api.fitmeet.cn/api/v1/mcp'
 export const FITMEET_SCOPES = 'profile:read people:search hall:publish messages:read messages:write social:read'
 export const FITMEET_CREDENTIAL_REF = 'FITMEET_MCP_OAUTH'
-const SKILL_URL = new URL('../skills/fitmeet/SKILL.md', import.meta.url)
+const SKILL_URL = new URL(DISTRIBUTION_LOCALE === 'zh-CN' ? '../skills/fitmeet/SKILL.md' : '../skills/fitmeet/SKILL.en.md', import.meta.url)
 const SKILL_DIRECTORY = fileURLToPath(new URL('../skills/fitmeet/', import.meta.url))
-const SKILL_DESCRIPTION = 'Use FitMeet to find social companions, read visible gatherings and personal follow-up information, and, only after an exact preview and explicit current-turn confirmation, publish, open a direct chat, or send a message.'
+const SKILL_DESCRIPTION = DISTRIBUTION_LOCALE === 'zh-CN' ? '在授权范围内寻找人物与需求，读取组局、提醒、事项和反馈；发布、开聊与发消息须展示准确预览并逐次确认。' : 'Use FitMeet to find social companions, read visible gatherings and personal follow-up information, and, only after an exact preview and explicit current-turn confirmation, publish, open a direct chat, or send a message.'
 
 /** User configuration for one OAuth-protected Streamable HTTP MCP server. */
 export interface Config {
@@ -110,11 +111,12 @@ export function defaultCredentialRef(serverName: string): string {
 /** Model guidance for discovering and executing capabilities from one MCP server. */
 export function mcpGuidance(serverName: string): string {
   const prefix = `mcp__${serverName}__`
+  if (DISTRIBUTION_LOCALE === 'zh-CN') return `用户需要找人、搜索需求与能力、读取组局、提醒、事项或反馈时，使用 ${prefix} 开头的工具。发布、开聊或发送消息需先 prepare；回执为 AUTOMATIC 时直接按原样标识提交并传 authorizationMode=AUTOMATIC，否则取得明确确认后再 confirm。OAuth 不等于业务确认。403 缺权限不等于登录过期，刷新不能增加权限。按用户语言自然简洁地回答，不展示内部状态枚举。组局写操作使用返回的网页入口。`
   return `Use FitMeet tools beginning with ${prefix} when the user asks to find people, needs, capabilities, read visible groups, personal notifications, items and feedback, or manage FitMeet publishing and direct messages. `
     + 'Search results are evidence for the user to assess, not consent to contact. '
-    + 'For publishing, opening a chat, or sending a message, call the matching prepare tool, show the exact preview, obtain explicit confirmation in the current turn, then call the matching confirm tool with the unchanged confirmation values. '
+    + 'For writes, call prepare. If its result reports AUTOMATIC standing consent, confirm immediately within the user goal using authorizationMode=AUTOMATIC and unchanged confirmation values; otherwise show the preview and obtain explicit confirmation first. '
     + 'Group participation, scheduling, notification settings and feedback changes use returned FitMeet page links; social tools only read snapshots. '
-    + 'Never treat OAuth consent as confirmation of a specific write action.'
+    + 'Never treat OAuth consent as confirmation of a specific write action. A 403 missing-scope error is not token expiry; token refresh cannot grant new scopes. Complete user consent instead. Reply naturally in the user language and do not repeat internal enums.'
 }
 
 /** Remove the metadata block because the Harness runtime registers metadata separately. */
@@ -130,7 +132,7 @@ export async function registerFitMeetSkill(ctx: Context): Promise<void> {
     skillCtx.skills.register({
       name: 'fitmeet',
       description: SKILL_DESCRIPTION,
-      whenToUse: 'Use when the user wants to find people or public needs/capabilities in FitMeet, review their FitMeet profile, publish after confirmation, manage one-to-one FitMeet conversations, or read visible groups, personal notifications, items and feedback.',
+      whenToUse: DISTRIBUTION_LOCALE === 'zh-CN' ? '用户需要在 FitMeet 找人、读组局与提醒、查询个人事项或反馈，或确认后发布和私聊时使用。' : 'Use when the user wants to find people or public needs/capabilities in FitMeet, review their FitMeet profile, publish after confirmation, manage one-to-one FitMeet conversations, or read visible groups, personal notifications, items and feedback.',
       source: 'bundled',
       resourceBase: { kind: 'directory', path: SKILL_DIRECTORY },
       content,

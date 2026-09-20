@@ -13,7 +13,7 @@ import type { ReconnectConfig } from './connection.js';
 export type { McpResult } from './tools.js';
 export type { ReconnectConfig, ResolvedReconnectPolicy } from './connection.js';
 /** Cordis plugin name used by loader diagnostics. */
-export declare const name = "fitmeet-dsh-plugin";
+export declare const name: string;
 /** Services required by the OAuth client. */
 export declare const inject: string[];
 export declare const FITMEET_SERVER_NAME = "fitmeet";

@@ -1,3 +1,10 @@
+# 0.2.0
+
+- English and Chinese npm distributions from one source, with localized Skills and routing.
+- Complete 17-tool documentation including groups, notifications, items and feedback.
+- Permission recovery and publication type, expiry and viewing links.
+- Stop repeated tool-discovery pagination while preserving existing tools.
+
 # Changelog
 
 ## 0.1.2 — 2026-09-12

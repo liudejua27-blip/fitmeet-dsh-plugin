@@ -1,7 +1,7 @@
 {
   "name": "fitmeet-dsh-plugin",
-  "version": "0.1.2",
-  "description": "Installable FitMeet MCP and Skill plugin for DeepSeek Harness with per-user OAuth 2.1 and PKCE.",
+  "version": "0.2.0",
+  "description": "FitMeet connects your Agent to real people, shared interests and activities. MCP + Skills for DeepSeek Harness, with OAuth and bilingual guidance.",
   "type": "module",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -26,7 +26,10 @@
     "SECURITY.md",
     "skills/fitmeet/references/*.md",
     "service.json",
-    "CHANGELOG.md"
+    "CHANGELOG.md",
+    "README.zh-CN.md",
+    "skills/fitmeet/SKILL.en.md",
+    "README.en.md"
   ],
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
@@ -35,7 +38,8 @@
     "check": "pnpm typecheck && pnpm test && pnpm build && pnpm check:public-contract",
     "verify:production": "node scripts/verify-production-oauth.mjs",
     "check:public-contract": "node scripts/fitmeet-public-contract.mjs",
-    "prepublishOnly": "pnpm check"
+    "prepublishOnly": "pnpm check",
+    "build:distributions": "pnpm check && node scripts/build-distributions.mjs"
   },
   "engines": {
     "node": ">=22.19"
@@ -49,15 +53,19 @@
     "url": "https://github.com/liudejua27-blip/fitmeet-dsh-plugin/issues"
   },
   "keywords": [
+    "fitmeet",
+    "social-network",
+    "human-network",
+    "agent",
+    "mcp",
+    "agent-skills",
+    "people-search",
+    "shared-interests",
     "deepseek-harness",
     "dsh-plugin",
-    "fitmeet",
-    "mcp",
     "oauth",
     "pkce",
-    "agent-skill",
-    "human-network",
-    "people-search"
+    "agent-skill"
   ],
   "license": "MIT",
   "dsh": {
