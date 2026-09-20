@@ -61,6 +61,8 @@ export declare const Config: z<Config>;
 export declare function defaultCredentialRef(serverName: string): string;
 /** Model guidance for discovering and executing capabilities from one MCP server. */
 export declare function mcpGuidance(serverName: string): string;
+/** Always present before Skill loading; package locale is not conversation language. */
+export declare function presentationGuidance(): string;
 /** Remove the metadata block because the Harness runtime registers metadata separately. */
 export declare function stripSkillFrontmatter(markdown: string): string;
 export declare function registerFitMeetSkill(ctx: Context): Promise<void>;
