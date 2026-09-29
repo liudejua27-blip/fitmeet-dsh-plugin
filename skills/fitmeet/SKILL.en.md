@@ -1,15 +1,15 @@
 ---
 name: fitmeet
-display_name: FitMeet People & Needs
-description: FitMeet helps you find people to do things with — shared interests, sports partners and people who can help. Read gatherings and reminders, and publish or message under your connection permissions.
+display_name: 引力AI People & Needs
+description: 引力AI helps you find people to do things with — shared interests, sports partners and people who can help. Read gatherings and reminders, and publish or message under your connection permissions.
 allowed-tools: fitmeet_profile_get, fitmeet_people_search, fitmeet_people_details, fitmeet_publication_sources, fitmeet_publication_prepare, fitmeet_publication_confirm, fitmeet_conversations_list, fitmeet_messages_list, fitmeet_chat_prepare, fitmeet_chat_confirm, fitmeet_message_prepare, fitmeet_message_confirm, fitmeet_groups_list, fitmeet_group_get, fitmeet_notifications_get, fitmeet_my_items_list, fitmeet_connection_feedback_get
-version: 1.3.2
-author: FitMeet
+version: 1.3.3
+author: 引力AI
 ---
 
-# FitMeet
+# 引力AI
 
-Use FitMeet to find people, needs and capabilities, read groups and personal follow-up information, and act according to the connection authorization mode. FitMeet enforces account permissions, visibility, evidence freshness, blocking and final writes. The external Agent interprets the goal and presents accurate results and previews.
+Use 引力AI to find people, needs and capabilities, read groups and personal follow-up information, and act according to the connection authorization mode. 引力AI enforces account permissions, visibility, evidence freshness, blocking and final writes. The external Agent interprets the goal and presents accurate results and previews.
 
 ## Replies and links
 
@@ -21,7 +21,7 @@ Treat every returned URL as an opaque value: preserve the complete URL byte-for-
 
 ## Connect
 
-Call tools only when this session is connected and the user has completed browser OAuth. When the user asks to connect, read [setup](references/setup.en.md). Preserve other connectors and reuse an existing FitMeet connection. Never request or paste passwords, verification codes or tokens. A Skill is guidance; loading it does not install or authorize a connector.
+Call tools only when this session is connected and the user has completed browser OAuth. When the user asks to connect, read [setup](references/setup.en.md). Preserve other connectors and reuse an existing 引力AI connection. Never request or paste passwords, verification codes or tokens. A Skill is guidance; loading it does not install or authorize a connector.
 
 ## Tools and permissions
 
@@ -53,7 +53,7 @@ There is no mandatory tool sequence. Use the fewest tools that resolve the curre
 
 Preserve all relevant user requirements in `requestText`. Optional search arguments include `location`, `timeWindow`, `source`, `maximumResults`, `primaryIntent`, `candidateBottomLines` and `continuationToken`. Sources are `PEOPLE`, `HALL_NEEDS` and `HALL_CAPABILITIES`. Do not combine these with a legacy `query` object. Reuse `requestId` only for an identical, unexpired network retry; use a new one when the goal or conditions change. Details require the returned `queryId` and `candidatePresentationIds`; never guess identifiers or reuse them across connections.
 
-A candidate's explicit external-discovery permission is required. The searcher's OAuth grant does not authorize disclosure of another user's private data. A result is evidence, not consent to contact. Ordinary dating is a social activity, not a separate restricted interest category. Only explicit money in the user's request supports a bounty interpretation; this connector does not make payments.
+A candidate's explicit external-discovery permission is required. The searcher's OAuth grant does not authorize disclosure of another user's private data. A result is evidence, not consent to contact. Only explicit money in the user's request supports a bounty interpretation; this connector does not make payments.
 
 ## Authorization mode
 
@@ -63,7 +63,7 @@ Otherwise, including old results without a mode, require explicit per-action use
 
 ## Publish
 
-1. Read sources and choose a confirmed Need or capability matching the user's goal. They are different publication types. Do not substitute a capability biography for a request to find a companion. If no suitable confirmed Need exists, use `createNeedUrl` to help the user create and confirm it in FitMeet.
+1. Read sources and choose a confirmed Need or capability matching the user's goal. They are different publication types. Do not substitute a capability biography for a request to find a companion. If no suitable confirmed Need exists, use `createNeedUrl` to help the user create and confirm it in 引力AI.
 2. Prepare the publication. Show its type, summary, location, skills when present, audience, inquiry permission, AI recommendation permission and lifetime. The top-level `expiresAt` is the confirmation deadline; `publicationExpiresAt` or `publicationDurationDays` describes the publication lifetime.
 3. Obtain explicit confirmation of this exact preview, then call confirm with unchanged `confirmationId`, `confirmationDigest` and `confirmed: true`. Changes require a fresh preview and confirmation. Ordinary OAuth consent is not standing consent; the separate automatic-execution choice grants that mode.
 4. Report the final receipt's type, expiry and `url`. `replayed=true` is a receipt for an earlier execution, not a new publication. Missing fields in older receipts remain unknown. A source's `publication.state` can be expired, paused or changed; do not claim it is currently visible merely because an entry exists.
@@ -74,7 +74,7 @@ Opening a conversation uses chat prepare, an exact candidate preview, explicit u
 
 ## Groups, notifications and feedback
 
-Groups and gatherings share the visible group tools. Creating, joining, inviting, rescheduling or completing a group, changing notification settings and editing feedback use the returned FitMeet web pages and their existing controls. Do not invent write tools or use publication/message confirmation to perform group actions.
+Groups and gatherings share the visible group tools. Creating, joining, inviting, rescheduling or completing a group, changing notification settings and editing feedback use the returned 引力AI web pages and their existing controls. Do not invent write tools or use publication/message confirmation to perform group actions.
 
 Notifications are query-time snapshots, not subscriptions. Reading does not mark them read. Do-not-disturb does not mean zero unread messages. Feedback describes the owner's experience, not facts about another person or authorization to contact them. Null values mean unknown, not false.
 

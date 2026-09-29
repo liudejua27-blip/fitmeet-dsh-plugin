@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.2.3 — 2026-09-29
+
+- Unified 引力AI / Yinli AI identity in runtime guidance, package descriptions and bilingual Skills 1.3.3. Stable package and tool identifiers are preserved.
+- Aligned standalone and connector guidance with server-issued automatic/manual authorization; unchanged previews and original receipts remain authoritative.
+- Replaced order-dependent MCP identity parsing with the shared 2.2.1 identity file and checked both Skill languages across distributions.
+
+
 ## 0.2.2 — 2026-09-20
 
 - Follow the conversation language from the first visible sentence, including before Skill loading.

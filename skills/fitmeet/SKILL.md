@@ -1,20 +1,20 @@
 ---
 name: fitmeet
-display_name: FitMeet 人与需求连接
-display_name_en: FitMeet People & Needs
-description: FitMeet 让想法找到一起行动的人。找同好、约球友、找人帮忙，查看组局与提醒，并按连接授权发布和私聊。
-description_zh: FitMeet 让想法找到一起行动的人。找同好、约球友、找人帮忙，查看组局与提醒，并按连接授权发布和私聊。
+display_name: 引力AI人与需求连接
+display_name_en: 引力AI People & Needs
+description: 引力AI让想法找到一起行动的人。找同好、约球友、找人帮忙，查看组局与提醒，并按连接授权发布和私聊。
+description_zh: 引力AI让想法找到一起行动的人。找同好、约球友、找人帮忙，查看组局与提醒，并按连接授权发布和私聊。
 description_en: Search people and needs and read gatherings and notifications within granted permissions. Writes use previews and follow the connection authorization mode.
 allowed-tools: fitmeet_profile_get, fitmeet_people_search, fitmeet_people_details, fitmeet_publication_sources, fitmeet_publication_prepare, fitmeet_publication_confirm, fitmeet_conversations_list, fitmeet_messages_list, fitmeet_chat_prepare, fitmeet_chat_confirm, fitmeet_message_prepare, fitmeet_message_confirm, fitmeet_groups_list, fitmeet_group_get, fitmeet_notifications_get, fitmeet_my_items_list, fitmeet_connection_feedback_get
-version: 1.3.2
-author: FitMeet
+version: 1.3.3
+author: 引力AI
 ---
 
-# FitMeet
+# 引力AI
 
-帮助用户寻找合适的人、需求与能力，并按当前连接的授权模式发布内容或进行一对一私聊。FitMeet 服务负责账户权限、可见范围、搜索证据、封禁校验和最终写入；外部 Agent 负责理解意图、展示准确结果，并按 prepare 返回的模式自动执行或取得确认。
+帮助用户寻找合适的人、需求与能力，并按当前连接的授权模式发布内容或进行一对一私聊。引力AI服务负责账户权限、可见范围、搜索证据、封禁校验和最终写入；外部 Agent 负责理解意图、展示准确结果，并按 prepare 返回的模式自动执行或取得确认。
 
-只有当前会话已连接 FitMeet 并完成浏览器 OAuth 授权后才能调用。不要索要、展示或粘贴密码、验证码、access token、refresh token 或客户端密钥。遇到 `401`、授权过期或撤销时，引导用户使用宿主的“重新连接”流程。
+只有当前会话已连接引力AI并完成浏览器 OAuth 授权后才能调用。不要索要、展示或粘贴密码、验证码、access token、refresh token 或客户端密钥。遇到 `401`、授权过期或撤销时，引导用户使用宿主的“重新连接”流程。
 
 ## 回复与链接
 
@@ -26,7 +26,7 @@ author: FitMeet
 
 ## 配置服务
 
-用户明确要求连接 FitMeet 时，先读取 references/setup.md。宿主提供配置能力时使用该能力；允许编辑配置文件时，保留原配置并只合并 FitMeet 条目。不要推测配置文件路径，不覆盖其他连接器，不重复添加已有连接。
+用户明确要求连接引力AI时，先读取 references/setup.md。宿主提供配置能力时使用该能力；允许编辑配置文件时，保留原配置并只合并引力AI条目。不要推测配置文件路径，不覆盖其他连接器，不重复添加已有连接。
 
 没有配置权限或不支持远程 MCP/OAuth 时，提供 https://fitmeet.cn/developers/agent-setup 的手动步骤，并说明未完成状态。不要声称读取本 Skill 就已安装成功。
 
@@ -74,7 +74,7 @@ author: FitMeet
 3. 清楚询问用户是否确认发布这份预览。
 4. 只有用户在当前交互中明确同意后，才把原样返回的 `confirmationId`、`confirmationDigest` 与 `confirmed: true` 交给 `fitmeet_publication_confirm`。
 
-普通 OAuth 同意不等于自动执行授权；只有明确开启自动执行才可以省略逐次询问。用户修改任一字段后必须重新 prepare。不得发布任意临时文字；新需求要先在 FitMeet Agent 中形成并确认 Need。没有合适需求时，使用 createNeedUrl 引导；不得把找球友等需求改为能力介绍。来源 publication.state 表示当前展示状态，不能把过期或来源已变更的条目说成正在展示。确认回执的 kind、expiresAt、url 用于说明发布类型、到期时间与查看入口；replayed=true 是原操作回执，不是再次发布。旧回执未提供这些新增字段时，保留未知，不猜测。
+普通 OAuth 同意不等于自动执行授权；只有明确开启自动执行才可以省略逐次询问。用户修改任一字段后必须重新 prepare。不得发布任意临时文字；新需求要先在引力AI Agent 中形成并确认 Need。没有合适需求时，使用 createNeedUrl 引导；不得把找球友等需求改为能力介绍。来源 publication.state 表示当前展示状态，不能把过期或来源已变更的条目说成正在展示。确认回执的 kind、expiresAt、url 用于说明发布类型、到期时间与查看入口；replayed=true 是原操作回执，不是再次发布。旧回执未提供这些新增字段时，保留未知，不猜测。
 
 ## 私聊流程
 
@@ -115,4 +115,4 @@ author: FitMeet
 
 提醒是查询时的快照，不宣称正在后台持续监控。免打扰不等于未读数量为零。反馈只说明用户自己的经历，未知值不是否定，也不代表对方意愿。描述结果时使用中文状态名称，保留未知信息，不复述内部字段名。
 
-组局创建、加入、邀请、改期、完成，以及通知设置和反馈修改，通过返回的 FitMeet 网页入口和原有控件完成；以上新工具均不执行这些写操作。不要虚构新确认工具。不要用旧的私聊或发布确认工具代替组局操作。
+组局创建、加入、邀请、改期、完成，以及通知设置和反馈修改，通过返回的引力AI网页入口和原有控件完成；以上新工具均不执行这些写操作。不要虚构新确认工具。不要用旧的私聊或发布确认工具代替组局操作。

@@ -1,7 +1,7 @@
 {
   "name": "fitmeet-dsh-plugin",
-  "version": "0.2.2",
-  "description": "FitMeet for DeepSeek Harness \u2014 Find people to do things with: shared interests, sports partners and people who can help. Connect FitMeet and start with one request.",
+  "version": "0.2.3",
+  "description": "Yinli AI (引力AI) for DeepSeek Harness — Find the right people for what you want to do. Discover companions, shared interests and opportunities.",
   "type": "module",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",

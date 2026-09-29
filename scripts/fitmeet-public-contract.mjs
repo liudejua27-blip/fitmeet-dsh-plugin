@@ -26,16 +26,23 @@ if (website) {
 const args = process.argv.slice(2);
 for (let i = 0; i < args.length; i++) {
   if (args[i] === '--runtime') {
-    const source = readFileSync(resolve(args[++i], 'src/mcp-server.ts'), 'utf8');
+    const runtime = args[++i];
+    const source = readFileSync(resolve(runtime, 'src/mcp-server.ts'), 'utf8');
+    const identity = JSON.parse(readFileSync(resolve(runtime, 'src/mcp-server-info.json'), 'utf8'));
+    assert.ok(source.includes('new McpServer(MCP_SERVER_INFO)'), 'Runtime must use shared identity');
+    assert.equal(identity.name, 'fitmeet');
+    assert.equal(identity.title, manifest.name, 'Runtime display name drift');
     const body = source.split('export const FITMEET_MCP_TOOLS = {')[1]?.split('} as const')[0];
     assert.ok(body, 'Runtime catalog parser requires review');
     const tools = [...body.matchAll(/(fitmeet_\w+): (\[[^\]]+\])/g)].map(([, name, scopes]) => ({ name, scopes: JSON.parse(scopes) }));
     assert.deepEqual(manifest.tools, tools, 'Runtime tool or scope drift');
-    assert.equal(manifest.serverVersion, source.match(/new McpServer\(\{ name: "fitmeet", version: "([^"]+)"/)[1], 'Runtime version drift');
+    assert.equal(manifest.serverVersion, identity.version, 'Runtime version drift');
   } else if (args[i] === '--package') {
     const other = resolve(args[++i]);
     assert.deepEqual(JSON.parse(readFileSync(resolve(other, 'service.json'), 'utf8')), manifest, 'Distribution manifest drift');
     assert.equal(readFileSync(resolve(other, 'skills/fitmeet/SKILL.md'), 'utf8'), skill, 'Distribution Skill drift');
+    assert.equal(readFileSync(resolve(other, 'skills/fitmeet/SKILL.en.md'), 'utf8'), read(website ? 'public/skills/fitmeet/SKILL.en.md' : 'skills/fitmeet/SKILL.en.md'), 'English Skill drift');
+    assert.equal(readFileSync(resolve(other, 'skills/fitmeet/references/setup.en.md'), 'utf8'), read(website ? 'public/skills/fitmeet/references/setup.en.md' : 'skills/fitmeet/references/setup.en.md'), 'English setup drift');
     assert.equal(readFileSync(resolve(other, 'skills/fitmeet/references/setup.md'), 'utf8'), read(website ? 'public/skills/fitmeet/references/setup.md' : 'skills/fitmeet/references/setup.md'));
   } else if (args[i] === '--live') {
     const response = await fetch('https://fitmeet.cn/integrations/fitmeet/service.json', { signal: AbortSignal.timeout(15000) });

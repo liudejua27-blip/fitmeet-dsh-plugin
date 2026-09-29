@@ -23,7 +23,7 @@ function validConfig() {
   }
 }
 
-describe('FitMeet plugin configuration', () => {
+describe('引力AI plugin configuration', () => {
   it('resolves the production endpoint and per-user OAuth credential reference', () => {
     expect(resolveConfig(validConfig())).toMatchObject({
       serverName: 'fitmeet',
@@ -36,7 +36,7 @@ describe('FitMeet plugin configuration', () => {
   })
 
   it('rejects endpoint, scope, credential, and Authorization header overrides', () => {
-    expect(() => resolveConfig({ ...validConfig(), url: 'https://example.com/mcp' })).toThrow('FitMeet MCP endpoint')
+    expect(() => resolveConfig({ ...validConfig(), url: 'https://example.com/mcp' })).toThrow('引力AI MCP endpoint')
     expect(() => resolveConfig({ ...validConfig(), scope: 'admin:write' })).toThrow('subset')
     expect(() => resolveConfig({ ...validConfig(), credentialRef: 'OTHER_CREDENTIAL' })).toThrow('credentialRef must be')
     expect(() => resolveConfig({ ...validConfig(), headers: { Authorization: 'Bearer secret' } })).toThrow('owned by OAuth')
@@ -86,12 +86,12 @@ describe('FitMeet plugin configuration', () => {
     const markdown = await readFile(`${root}/skills/fitmeet/SKILL.md`, 'utf8')
     const body = stripSkillFrontmatter(markdown)
     expect(markdown).toContain('name: fitmeet')
-    expect(body).toMatch(/^# FitMeet/)
+    expect(body).toMatch(/^# 引力AI/)
     expect(body).toContain('prepare → 用户明确确认 → confirm')
     expect(body).not.toContain('display_name_en:')
   })
 
-  it('contributes an invocable FitMeet Skill to the Harness registry', async () => {
+  it('contributes an invocable 引力AI Skill to the Harness registry', async () => {
     let registered: Record<string, unknown> | undefined
     const ctx = {
       inject(_services: string[], callback: (child: unknown) => void) {
@@ -112,6 +112,6 @@ describe('FitMeet plugin configuration', () => {
       source: 'bundled',
       invocation: { modelInvocable: true, userInvocable: true },
     })
-    expect(String(registered?.content)).toContain('# FitMeet')
+    expect(String(registered?.content)).toContain('# 引力AI')
   })
 })

@@ -28,7 +28,7 @@ export interface Config {
     url: string;
     /** Harness credential reference holding the serialized OAuth state. */
     credentialRef?: string;
-    /** Optional nonempty subset of FitMeet scopes; defaults to all supported scopes. Browser consent is still required. */
+    /** Optional nonempty subset of 引力AI scopes; defaults to all supported scopes. Browser consent is still required. */
     scope?: string;
     /** Non-authorization headers attached to MCP and OAuth discovery requests. */
     headers?: Record<string, string>;

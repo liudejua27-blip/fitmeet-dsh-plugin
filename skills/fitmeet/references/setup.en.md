@@ -1,4 +1,4 @@
-# Connect FitMeet MCP
+# Connect 引力AI MCP
 
 Configure only when the user asks to connect. Follow the host's current configuration format; preserve other servers. Endpoint: https://api.fitmeet.cn/api/v1/mcp using Streamable HTTP with per-user browser OAuth and PKCE S256. No shared key or fixed Authorization header is needed.
 
@@ -20,4 +20,4 @@ Other hosts may use different field names. No password, verification code or tok
 - Public service manifest: https://fitmeet.cn/integrations/fitmeet/service.json
 - Compatibility: https://fitmeet.cn/integrations
 
-Automatic execution is an independent choice on the FitMeet consent page. When enabled, use the prepare result authorizationMode=AUTOMATIC to continue without another per-action prompt. Otherwise keep manual confirmation. Never silently upgrade an existing grant.
+Automatic execution is an independent choice on the 引力AI consent page. When enabled, use the prepare result authorizationMode=AUTOMATIC to continue without another per-action prompt. Otherwise keep manual confirmation. Never silently upgrade an existing grant.

@@ -156,7 +156,7 @@ export async function syncTools(
     }
     cursor = response.nextCursor
     if (cursor) {
-      if (seenCursors.has(cursor) || seenCursors.size >= 99) throw new Error('FitMeet tool discovery pagination did not terminate; existing tools were preserved.')
+      if (seenCursors.has(cursor) || seenCursors.size >= 99) throw new Error('引力AI tool discovery pagination did not terminate; existing tools were preserved.')
       seenCursors.add(cursor)
     }
   } while (cursor)

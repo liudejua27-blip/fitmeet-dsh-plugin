@@ -1,8 +1,8 @@
 {
   "format": "fitmeet-public-service-v1",
-  "name": "FitMeet",
-  "description": "由 AI Agent 帮助表达需求、寻找真实的人、发现组局并建立联系；支持个人授权的 MCP 搜索、读取及确认后发布和私聊。",
-  "updatedAt": "2026-09-20",
+  "name": "引力AI",
+  "description": "让想法找到一起行动的人。通过个人授权发现同伴、需求与组局，并按连接授权发布和私聊。",
+  "updatedAt": "2026-09-29",
   "homepage": "https://fitmeet.cn",
   "documentation": "https://fitmeet.cn/developers/agent-setup",
   "endpoint": "https://api.fitmeet.cn/api/v1/mcp",
@@ -51,8 +51,8 @@
     "send_message"
   ],
   "externalDiscovery": "profile-owner opt-in and revocable",
-  "formatNote": "FitMeet-maintained public documentation, not a universal Agent discovery standard.",
-  "serverVersion": "2.2.0",
+  "formatNote": "引力AI-maintained public documentation, not a universal Agent discovery standard. actionsRequireConfirmation names prepared writes; standing authorization is described by writeAuthorization.",
+  "serverVersion": "2.2.1",
   "toolCount": 17,
   "socialReadTools": [
     "fitmeet_groups_list",
@@ -61,7 +61,7 @@
     "fitmeet_my_items_list",
     "fitmeet_connection_feedback_get"
   ],
-  "socialWriteHandoff": "Group participation, schedule changes, completion and feedback edits use existing FitMeet pages.",
+  "socialWriteHandoff": "Group participation, schedule changes, completion and feedback edits use existing 引力 pages.",
   "tools": [
     {
       "name": "fitmeet_groups_list",
@@ -182,5 +182,15 @@
     },
     "revocable": true
   },
-  "toolDiscovery": "Only tools covered by the current grant are listed; public catalog contains all supported tools."
+  "toolDiscovery": "Only tools covered by the current grant are listed; public catalog contains all supported tools.",
+  "writeAuthorization": {
+    "defaultMode": "USER_CONFIRMED",
+    "automaticMode": "AUTOMATIC",
+    "automaticRequires": {
+      "requiresUserConfirmation": false,
+      "authorizationMode": "AUTOMATIC"
+    },
+    "changedPreview": "PREPARE_AGAIN",
+    "missingMode": "USER_CONFIRMED"
+  }
 }
