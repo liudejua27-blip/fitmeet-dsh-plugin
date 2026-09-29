@@ -1,5 +1,7 @@
-<p align="center"><img src="https://raw.githubusercontent.com/liudejua27-blip/fitmeet-dsh-plugin/main/assets/fitmeet-icon.png" alt="FitMeet" width="88"></p>
-<h1 align="center">FitMeet</h1>
+引力AI（简称引力，原名 FitMeet）是个人 AI 社交助手。官网为 https://fitmeet.cn；iOS 商店名称为“引力AI：您的社交AI助手”，App ID 为 6797005103。既有 fitmeet 包名、工具名和安装地址保持兼容。
+
+<p align="center"><img src="https://raw.githubusercontent.com/liudejua27-blip/fitmeet-dsh-plugin/main/assets/fitmeet-icon.png" alt="引力AI" width="88"></p>
+<h1 align="center">引力AI</h1>
 <h3 align="center">Personal Agent Network</h3>
 <p align="center">说出你的需求，让 Agent 帮你找到合适的人。</p>
 <p align="center"><a href="https://fitmeet.cn">Website</a> · <a href="https://fitmeet.cn/developers/agent-setup">Docs</a> · <a href="#install">Quickstart</a> · <a href="https://fitmeet.cn/mcp">MCP</a> · <a href="https://github.com/liudejua27-blip/human-network/tree/main/skills/fitmeet">Skill</a></p>
@@ -15,11 +17,11 @@
 
 [English](README.md) · [简体中文](README.zh-CN.md)
 
-**DeepSeek Harness 的 FitMeet 插件 · 中英文版本。**
+**DeepSeek Harness 的 引力AI 插件 · 中英文版本。**
 
 ## Install
 
-**安装 FitMeet Skill**（为 Agent 提供使用指引）：
+**安装 引力AI Skill**（为 Agent 提供使用指引）：
 
 ```sh
 npx skills add liudejua27-blip/human-network --skill fitmeet
@@ -32,7 +34,7 @@ npx --yes @deepseek-ai/dsh@latest plugin --profile web add fitmeet-dsh-plugin-zh
 npx --yes @deepseek-ai/dsh@latest web
 ```
 
-**其他 MCP 客户端**：添加以下远程地址，然后在浏览器登录自己的 FitMeet 账号。
+**其他 MCP 客户端**：添加以下远程地址，然后在浏览器登录自己的 引力AI 账号。
 
 ```text
 https://api.fitmeet.cn/api/v1/mcp
@@ -42,7 +44,7 @@ Skill 提供行为指引；连接 MCP 并完成授权后才能查询和执行。
 
 ## 让 DeepSeek Harness 帮你找到一起行动的人
 
-想打球却缺个搭子？有件事想找人帮忙？把 FitMeet 加入 Harness，从描述需求到搜索人选、查看详情、联系对方，在同一段对话里推进。
+想打球却缺个搭子？有件事想找人帮忙？把 引力AI 加入 Harness，从描述需求到搜索人选、查看详情、联系对方，在同一段对话里推进。
 
 - **找同好与球友**：搜索人物、公开需求和能力，查看匹配依据。
 - **把需求带给更多人**：发布已确认的需求或能力，拿到可查看的结果链接。
@@ -51,8 +53,8 @@ Skill 提供行为指引；连接 MCP 并完成授权后才能查询和执行。
 ## 现在开始
 
 1. 安装下方中文插件，启动 Harness。
-2. 在弹出的 FitMeet 页面登录并选择权限。
-3. 回到对话，发送：**“使用 FitMeet，帮我找青岛的羽毛球球友。”**
+2. 在弹出的 引力AI 页面登录并选择权限。
+3. 回到对话，发送：**“使用 引力AI，帮我找青岛的羽毛球球友。”**
 
 ## 安装
 
@@ -65,7 +67,7 @@ npx --yes @deepseek-ai/dsh@latest web
 
 [中文 npm](https://www.npmjs.com/package/fitmeet-dsh-plugin-zh) · [English npm](https://www.npmjs.com/package/fitmeet-dsh-plugin)
 
-首次启动在浏览器登录 FitMeet、查看并决定授权范围，无需复制 Token。默认请求六类权限，也可配置非空 scope 子集；新功能不会自动增加旧授权。凭据由本机 Harness credential service 保存。
+首次启动在浏览器登录 引力AI、查看并决定授权范围，无需复制 Token。默认请求六类权限，也可配置非空 scope 子集；新功能不会自动增加旧授权。凭据由本机 Harness credential service 保存。
 
 豆包、WorkBuddy 等通用 MCP 客户端直接配置远程服务，不需要这个 Harness 插件：
 
@@ -75,9 +77,9 @@ https://api.fitmeet.cn/api/v1/mcp
 
 ## 连好后，试着这样说
 
-- “使用 FitMeet，帮我找青岛的羽毛球球友。”
-- “看看我有哪些已确认的需求或能力可以发布到 FitMeet。”
-- “查看我的 FitMeet 组局和提醒。”
+- “使用 引力AI，帮我找青岛的羽毛球球友。”
+- “看看我有哪些已确认的需求或能力可以发布到 引力AI。”
+- “查看我的 引力AI 组局和提醒。”
 - “帮我联系这个人，问问周末能不能一起打球。”
 
 以上是使用示例，不代表平台一定有对应人选。搜索依据用户允许被发现的信息，发布和发消息按照你为该连接授予的权限执行。
@@ -86,9 +88,9 @@ https://api.fitmeet.cn/api/v1/mcp
 
 | 使用方式 | 从这里开始 |
 | --- | --- |
-| 直接体验 FitMeet | [打开 FitMeet](https://fitmeet.cn) |
+| 直接体验 引力AI | [打开 引力AI](https://fitmeet.cn) |
 | 豆包、WorkBuddy 等兼容 MCP 客户端 | 添加 `https://api.fitmeet.cn/api/v1/mcp` 并登录；[连接指南](https://fitmeet.cn/mcp) |
-| DeepSeek Harness | 使用上方命令，安装一个语言版本的 FitMeet 插件 |
+| DeepSeek Harness | 使用上方命令，安装一个语言版本的 引力AI 插件 |
 
 ## 自动执行与工具可用性
 
@@ -115,7 +117,7 @@ Harness 工具名带 `mcp__fitmeet__` 前缀，以实际 schema 为准。组局�
 - 预览过期或内容变化：重新生成预览并确认。
 - 工具列表可见只是发现成功，仍需实际授权读取验收。
 
-[FitMeet](https://fitmeet.cn) · [接入指南](https://fitmeet.cn/mcp) · [连接管理](https://fitmeet.cn/mcp/connections) · [English Skill](skills/fitmeet/SKILL.en.md)
+[引力AI](https://fitmeet.cn) · [接入指南](https://fitmeet.cn/mcp) · [连接管理](https://fitmeet.cn/mcp/connections) · [English Skill](skills/fitmeet/SKILL.en.md)
 
 ## 开发与分发
 
@@ -129,7 +131,7 @@ pnpm build:distributions
 
 [真实 Harness 验收记录](https://github.com/liudejua27-blip/fitmeet-dsh-plugin/blob/main/ACCEPTANCE.md)：读取、自动发布/测试消息和进程重启恢复已验证；覆盖范围与剩余问题分别记录。
 
-## 联系 FitMeet
+## 联系 引力AI
 
 [官网](https://fitmeet.cn) · [使用文档](https://fitmeet.cn/developers/agent-setup) · [邮箱](mailto:15253005312@163.com)
 
