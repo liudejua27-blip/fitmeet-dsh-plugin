@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.2.4 — 2026-10-02
+
+- Align the English and Chinese package metadata with the public definition: Yinli AI (引力AI, formerly FitMeet) is an AI-native human connection and instant messaging network.
+- Keep DeepSeek Harness installation, Skills, service metadata and the 17-tool contract synchronized across both distributions.
+
 ## 0.2.3 — 2026-09-29
 
 - Unified 引力AI / Yinli AI identity in runtime guidance, package descriptions and bilingual Skills 1.3.3. Stable package and tool identifiers are preserved.
