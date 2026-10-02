@@ -1,10 +1,10 @@
-引力AI（简称引力，原名 FitMeet）是个人 AI 社交助手。官网为 https://fitmeet.cn；iOS 商店名称为“引力AI：您的社交AI助手”，App ID 为 6797005103。既有 fitmeet 包名、工具名和安装地址保持兼容。
+引力AI（简称引力，原名 FitMeet）是 AI 原生的人际互联即时通讯网络。你用一句话表达想认识谁或想一起做什么，Agent 帮你理解意图、发现相关的人，并把下一步带回对话。官网为 https://fitmeet.cn；当前 [iOS 商店页面](https://apps.apple.com/cn/app/fitmeet/id6797005103)名称仍为“引力AI：您的社交AI助手”，App ID 为 6797005103；运营主体为晤云科技（青岛）有限公司。既有 fitmeet 包名、工具名和安装地址保持兼容。
 
 <p align="center"><img src="https://raw.githubusercontent.com/liudejua27-blip/fitmeet-dsh-plugin/main/assets/fitmeet-icon.png" alt="引力AI" width="88"></p>
 <h1 align="center">引力AI</h1>
-<h3 align="center">Personal Agent Network</h3>
-<p align="center">说出你的需求，让 Agent 帮你找到合适的人。</p>
-<p align="center"><a href="https://fitmeet.cn">Website</a> · <a href="https://fitmeet.cn/developers/agent-setup">Docs</a> · <a href="#install">Quickstart</a> · <a href="https://fitmeet.cn/mcp">MCP</a> · <a href="https://github.com/liudejua27-blip/human-network/tree/main/skills/fitmeet">Skill</a></p>
+<h3 align="center">AI 原生的人际互联即时通讯网络</h3>
+<p align="center">说出你想认识谁、想一起做什么。<br>让 Agent 找到相关的人，把下一步带回对话。</p>
+<p align="center"><a href="https://fitmeet.cn">Website</a> · <a href="https://fitmeet.cn/human-network">AI 原生网络</a> · <a href="https://fitmeet.cn/how-it-works">工作方式</a> · <a href="https://apps.apple.com/cn/app/fitmeet/id6797005103">iOS App</a> · <a href="https://fitmeet.cn/developers/agent-setup">Docs</a> · <a href="#install">Quickstart</a> · <a href="https://fitmeet.cn/mcp">MCP</a> · <a href="https://github.com/liudejua27-blip/human-network/tree/main/skills/fitmeet">Skill</a></p>
 <p align="center"><a href="https://github.com/liudejua27-blip/fitmeet-dsh-plugin/stargazers"><img alt="GitHub Stars" src="https://img.shields.io/github/stars/liudejua27-blip/fitmeet-dsh-plugin?style=flat"></a>
 <a href="https://www.npmjs.com/package/fitmeet-dsh-plugin"><img alt="npm version" src="https://img.shields.io/npm/v/fitmeet-dsh-plugin"></a>
 <a href="https://www.npmjs.com/package/fitmeet-dsh-plugin"><img alt="npm downloads" src="https://img.shields.io/npm/dm/fitmeet-dsh-plugin"></a>

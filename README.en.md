@@ -1,10 +1,10 @@
-Yinli AI (引力AI, also called 引力, formerly FitMeet) is a personal AI social assistant. Official website: https://fitmeet.cn. The iOS listing is 引力AI：您的社交AI助手, App ID 6797005103. Existing fitmeet package names, tool identifiers and installation URLs remain compatible.
+Yinli AI (引力AI, also called 引力, formerly FitMeet) is an AI-native human connection and instant messaging network. You describe whom you want to meet or what you want to do; an Agent helps understand the intention, discover relevant people, and bring the next step back into conversation. Official website: https://fitmeet.cn. The current [iOS listing](https://apps.apple.com/cn/app/fitmeet/id6797005103) remains 引力AI：您的社交AI助手, App ID 6797005103. The service is operated by Wuyun Technology (Qingdao) Co., Ltd. Existing fitmeet package names, tool identifiers and installation URLs remain compatible.
 
 <p align="center"><img src="https://raw.githubusercontent.com/liudejua27-blip/fitmeet-dsh-plugin/main/assets/fitmeet-icon.png" alt="引力AI" width="88"></p>
 <h1 align="center">引力AI</h1>
-<h3 align="center">Personal Agent Network</h3>
-<p align="center">Speak what you need.<br>Let your Agent find the right people.</p>
-<p align="center"><a href="https://fitmeet.cn">Website</a> · <a href="https://fitmeet.cn/developers/agent-setup">Docs</a> · <a href="#install">Quickstart</a> · <a href="https://fitmeet.cn/mcp">MCP</a> · <a href="https://github.com/liudejua27-blip/human-network/tree/main/skills/fitmeet">Skill</a></p>
+<h3 align="center">AI-native human connection and instant messaging network</h3>
+<p align="center">Say who you want to meet or what you want to do.<br>Let your Agent find relevant people and keep the conversation going.</p>
+<p align="center"><a href="https://fitmeet.cn">Website</a> · <a href="https://fitmeet.cn/human-network">AI Network</a> · <a href="https://fitmeet.cn/how-it-works">How it works</a> · <a href="https://apps.apple.com/cn/app/fitmeet/id6797005103">iOS App</a> · <a href="https://fitmeet.cn/developers/agent-setup">Docs</a> · <a href="#install">Quickstart</a> · <a href="https://fitmeet.cn/mcp">MCP</a> · <a href="https://github.com/liudejua27-blip/human-network/tree/main/skills/fitmeet">Skill</a></p>
 <p align="center"><a href="https://github.com/liudejua27-blip/fitmeet-dsh-plugin/stargazers"><img alt="GitHub Stars" src="https://img.shields.io/github/stars/liudejua27-blip/fitmeet-dsh-plugin?style=flat"></a>
 <a href="https://www.npmjs.com/package/fitmeet-dsh-plugin"><img alt="npm version" src="https://img.shields.io/npm/v/fitmeet-dsh-plugin"></a>
 <a href="https://www.npmjs.com/package/fitmeet-dsh-plugin"><img alt="npm downloads" src="https://img.shields.io/npm/dm/fitmeet-dsh-plugin"></a>

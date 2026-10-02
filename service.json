@@ -1,8 +1,8 @@
 {
   "format": "fitmeet-public-service-v1",
   "name": "引力AI",
-  "description": "让想法找到一起行动的人。通过个人授权发现同伴、需求与组局，并按连接授权发布和私聊。",
-  "updatedAt": "2026-09-29",
+  "description": "引力AI是 AI 原生的人际互联即时通讯网络。通过个人授权发现相关的人、需求与组局，并按连接授权开始对话、发布和私聊。",
+  "updatedAt": "2026-10-02",
   "homepage": "https://fitmeet.cn",
   "documentation": "https://fitmeet.cn/developers/agent-setup",
   "endpoint": "https://api.fitmeet.cn/api/v1/mcp",

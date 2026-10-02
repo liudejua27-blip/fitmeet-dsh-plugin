@@ -2,8 +2,8 @@
 name: fitmeet
 display_name: 引力AI人与需求连接
 display_name_en: 引力AI People & Needs
-description: 引力AI让想法找到一起行动的人。找同好、约球友、找人帮忙，查看组局与提醒，并按连接授权发布和私聊。
-description_zh: 引力AI让想法找到一起行动的人。找同好、约球友、找人帮忙，查看组局与提醒，并按连接授权发布和私聊。
+description: 引力AI是 AI 原生的人际互联即时通讯网络。找同好、约球友、找人帮忙，查看组局与提醒，并按连接授权开始对话、发布和私聊。
+description_zh: 引力AI是 AI 原生的人际互联即时通讯网络。找同好、约球友、找人帮忙，查看组局与提醒，并按连接授权开始对话、发布和私聊。
 description_en: Search people and needs and read gatherings and notifications within granted permissions. Writes use previews and follow the connection authorization mode.
 allowed-tools: fitmeet_profile_get, fitmeet_people_search, fitmeet_people_details, fitmeet_publication_sources, fitmeet_publication_prepare, fitmeet_publication_confirm, fitmeet_conversations_list, fitmeet_messages_list, fitmeet_chat_prepare, fitmeet_chat_confirm, fitmeet_message_prepare, fitmeet_message_confirm, fitmeet_groups_list, fitmeet_group_get, fitmeet_notifications_get, fitmeet_my_items_list, fitmeet_connection_feedback_get
 version: 1.3.3
@@ -12,7 +12,7 @@ author: 引力AI
 
 # 引力AI
 
-帮助用户寻找合适的人、需求与能力，并按当前连接的授权模式发布内容或进行一对一私聊。引力AI服务负责账户权限、可见范围、搜索证据、封禁校验和最终写入；外部 Agent 负责理解意图、展示准确结果，并按 prepare 返回的模式自动执行或取得确认。
+帮助用户在 AI 原生的人际互联即时通讯网络中寻找相关的人、需求与能力，并按当前连接的授权模式开始对话、发布内容或进行一对一私聊。引力AI服务负责账户权限、可见范围、搜索证据、封禁校验和最终写入；外部 Agent 负责理解意图、展示准确结果，并按 prepare 返回的模式自动执行或取得确认。
 
 只有当前会话已连接引力AI并完成浏览器 OAuth 授权后才能调用。不要索要、展示或粘贴密码、验证码、access token、refresh token 或客户端密钥。遇到 `401`、授权过期或撤销时，引导用户使用宿主的“重新连接”流程。
 

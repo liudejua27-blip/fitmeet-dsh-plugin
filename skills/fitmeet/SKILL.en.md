@@ -1,7 +1,7 @@
 ---
 name: fitmeet
 display_name: 引力AI People & Needs
-description: 引力AI helps you find people to do things with — shared interests, sports partners and people who can help. Read gatherings and reminders, and publish or message under your connection permissions.
+description: 引力AI is an AI-native human connection and instant messaging network. Find people for shared interests, sports, learning and collaboration, then start conversations or publish under your connection permissions.
 allowed-tools: fitmeet_profile_get, fitmeet_people_search, fitmeet_people_details, fitmeet_publication_sources, fitmeet_publication_prepare, fitmeet_publication_confirm, fitmeet_conversations_list, fitmeet_messages_list, fitmeet_chat_prepare, fitmeet_chat_confirm, fitmeet_message_prepare, fitmeet_message_confirm, fitmeet_groups_list, fitmeet_group_get, fitmeet_notifications_get, fitmeet_my_items_list, fitmeet_connection_feedback_get
 version: 1.3.3
 author: 引力AI
@@ -9,7 +9,7 @@ author: 引力AI
 
 # 引力AI
 
-Use 引力AI to find people, needs and capabilities, read groups and personal follow-up information, and act according to the connection authorization mode. 引力AI enforces account permissions, visibility, evidence freshness, blocking and final writes. The external Agent interprets the goal and presents accurate results and previews.
+Use 引力AI, an AI-native human connection and instant messaging network, to find people, needs and capabilities, read groups and personal follow-up information, and act according to the connection authorization mode. 引力AI enforces account permissions, visibility, evidence freshness, blocking and final writes. The external Agent interprets the goal and presents accurate results and previews.
 
 ## Replies and links
 
