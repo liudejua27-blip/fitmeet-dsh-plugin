@@ -1,6 +1,6 @@
 {
   "name": "fitmeet-dsh-plugin",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "description": "Yinli AI (引力AI) for DeepSeek Harness — the SI (Social Intelligence)-native human connection and instant-messaging network. Put people first; let your Agent apply social intelligence to discover and connect you with people you do not know through MCP.",
   "type": "module",
   "main": "lib/index.js",

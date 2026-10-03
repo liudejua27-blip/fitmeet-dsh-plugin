@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.2.6 — 2026-10-03
+
+- Refresh bilingual Registry links to the active Official MCP Registry metadata version 2.2.3.
+- Keep the SI (Social Intelligence) human-centered positioning and the existing MCP/OAuth contract unchanged.
+
 ## 0.2.5 — 2026-10-03
 
 - Reframe 引力AI / Yinli AI as the SI-native human connection and instant-messaging network: a human-centered social layer where Agents reduce the cost of discovering and contacting people who do not already know one another.

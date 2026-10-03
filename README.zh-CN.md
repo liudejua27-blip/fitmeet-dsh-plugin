@@ -152,8 +152,8 @@ pnpm build:distributions
 
 ## 收录与分发
 
-[skills.sh](https://skills.sh/liudejua27-blip/human-network/fitmeet) · [Official MCP Registry](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.liudejua27-blip%2Ffitmeet/versions/2.2.2) · [Smithery](https://smithery.ai/servers/liudejua27/fitmeet)
+[skills.sh](https://skills.sh/liudejua27-blip/human-network/fitmeet) · [Official MCP Registry](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.liudejua27-blip%2Ffitmeet/versions/2.2.3) · [Smithery](https://smithery.ai/servers/liudejua27/fitmeet)
 
-通过 [skills.sh](https://skills.sh/liudejua27-blip/human-network/fitmeet)、[Official MCP Registry](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.liudejua27-blip%2Ffitmeet/versions/2.2.2) 与 [Smithery](https://smithery.ai/servers/liudejua27/fitmeet) 接入引力AI。
+通过 [skills.sh](https://skills.sh/liudejua27-blip/human-network/fitmeet)、[Official MCP Registry](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.liudejua27-blip%2Ffitmeet/versions/2.2.3) 与 [Smithery](https://smithery.ai/servers/liudejua27/fitmeet) 接入引力AI。
 
 维护入口：[中英文包发布与更新流程](https://github.com/liudejua27-blip/fitmeet-dsh-plugin/blob/main/RELEASING.md)。
