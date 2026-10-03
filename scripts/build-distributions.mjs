@@ -8,7 +8,7 @@ for(const locale of ['en','zh-CN']){
   const dir=resolve(root,'dist',locale);await rm(dir,{recursive:true,force:true});await mkdir(dir,{recursive:true});
   // Explicit public allowlist: credentials, tests, source checkout and local state never enter artifacts.
   for(const file of ['lib','skills/fitmeet','assets/fitmeet-icon.png','cordis.patch.yml','mcp.json','README.md','README.en.md','README.zh-CN.md','LICENSE','THIRD_PARTY_NOTICES.md','SECURITY.md','service.json','CHANGELOG.md']) await cp(file,resolve(dir,file),{recursive:true});
-  const pkg={...base,name,fitmeet:{locale},scripts:{},description:locale==='en'?base.description:'引力AI（原名 FitMeet）是 AI 原生的人际互联即时通讯网络。通过 DeepSeek Harness 连接相关的人、需求与组局，并在同一段对话中继续联系、发布和私聊。'};
+  const pkg={...base,name,fitmeet:{locale},scripts:{},description:locale==='en'?base.description:'引力AI（原名 FitMeet）是 SI（Social Intelligence，社会智能）原生的人际互联即时通讯网络：以人为核心，让 Agent 运用社会智能理解意图、信任、场景与边界，在 MCP 网络中连接原本不会相遇的人，把每个意图推进为可以继续对话与行动的真实连接。'};
   await writeFile(resolve(dir,'package.json'),JSON.stringify(pkg,null,2)+'\n');
   await writeFile(resolve(dir,'lib/distribution.js'),`export const DISTRIBUTION_LOCALE = ${JSON.stringify(locale)};\nexport const DISTRIBUTION_NAME = ${JSON.stringify(name)};\n`);
   // No stale source map for a generated distribution module.

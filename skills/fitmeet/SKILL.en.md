@@ -1,7 +1,7 @@
 ---
 name: fitmeet
 display_name: 引力AI People & Needs
-description: 引力AI is an AI-native human connection and instant messaging network. Find people for shared interests, sports, learning and collaboration, then start conversations or publish under your connection permissions.
+description: Yinli AI is the SI-native human connection and instant-messaging network. SI means Social Intelligence: a human-centered layer that helps Agents understand intent, trust, context and boundaries, then connect people who would otherwise never meet.
 allowed-tools: fitmeet_profile_get, fitmeet_people_search, fitmeet_people_details, fitmeet_publication_sources, fitmeet_publication_prepare, fitmeet_publication_confirm, fitmeet_conversations_list, fitmeet_messages_list, fitmeet_chat_prepare, fitmeet_chat_confirm, fitmeet_message_prepare, fitmeet_message_confirm, fitmeet_groups_list, fitmeet_group_get, fitmeet_notifications_get, fitmeet_my_items_list, fitmeet_connection_feedback_get
 version: 1.3.3
 author: 引力AI
@@ -9,7 +9,9 @@ author: 引力AI
 
 # 引力AI
 
-Use 引力AI, an AI-native human connection and instant messaging network, to find people, needs and capabilities, read groups and personal follow-up information, and act according to the connection authorization mode. 引力AI enforces account permissions, visibility, evidence freshness, blocking and final writes. The external Agent interprets the goal and presents accurate results and previews.
+Use 引力AI, the SI-native human connection and instant-messaging network. SI means Social Intelligence: a human-centered layer that helps the Agent understand intent, trust, context and boundaries, then discover and connect people who would otherwise never meet. The Agent interprets intent, searches within consented visibility, asks the right questions and brings the next step back into the same conversation. 引力AI enforces account permissions, visibility, evidence freshness, blocking and final writes. The external Agent interprets the goal and presents accurate results and previews.
+
+Start with a real intention: find someone for an evening walk or dog walk, a fishing or hiking partner, a nearby mahjong or poker group, an interest community, a university tutor, or someone who fits the kind of relationship you want. Clarify the goal, discover a connection within the granted scope, and keep the next step in the same IM relationship.
 
 ## Replies and links
 

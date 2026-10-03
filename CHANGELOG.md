@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.5 — 2026-10-03
+
+- Reframe 引力AI / Yinli AI as the SI-native human connection and instant-messaging network: a human-centered social layer where Agents reduce the cost of discovering and contacting people who do not already know one another.
+- Add bilingual launch copy for real-world use cases such as an evening walk, dog walk, fishing, dating, local mahjong or poker games, hiking, interest groups, and direct coordination around a ride home.
+- Synchronize package metadata, service descriptions and Skills while preserving the existing OAuth, permission, preview, confirmation and receipt contract.
+
 ## 0.2.4 — 2026-10-02
 
 - Align the English and Chinese package metadata with the public definition: Yinli AI (引力AI, formerly FitMeet) is an AI-native human connection and instant messaging network.

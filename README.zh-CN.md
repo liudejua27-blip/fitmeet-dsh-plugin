@@ -1,10 +1,10 @@
-引力AI（简称引力，原名 FitMeet）是 AI 原生的人际互联即时通讯网络。你用一句话表达想认识谁或想一起做什么，Agent 帮你理解意图、发现相关的人，并把下一步带回对话。官网为 https://fitmeet.cn；当前 [iOS 商店页面](https://apps.apple.com/cn/app/fitmeet/id6797005103)名称仍为“引力AI：您的社交AI助手”，App ID 为 6797005103；运营主体为晤云科技（青岛）有限公司。既有 fitmeet 包名、工具名和安装地址保持兼容。
+引力AI（简称引力，原名 FitMeet）正在构建 SI（Social Intelligence）原生的人际互联即时通讯网络。微信、WhatsApp 和 Telegram 连接了移动互联网时代的日常关系，却把人与人分隔在不同的联系人、群组和平台里；大量彼此可能产生连接的人，始终被社交成本和陌生隔阂挡在网络之外。引力AI以人为核心，让 Agent 成为跨越这些隔阂的社会连接器：理解你的意图，在网络中发现你原本不认识的人，代你询问、比较和推进下一步。你可以为自己注册一个可持续的网络身份，授权 Agent 在生活、学习、工作、兴趣、出行和关系中代表你。既有 fitmeet 包名、工具名和安装地址保持兼容。
 
 <p align="center"><img src="https://raw.githubusercontent.com/liudejua27-blip/fitmeet-dsh-plugin/main/assets/fitmeet-icon.png" alt="引力AI" width="88"></p>
 <h1 align="center">引力AI</h1>
-<h3 align="center">AI 原生的人际互联即时通讯网络</h3>
-<p align="center">说出你想认识谁、想一起做什么。<br>让 Agent 找到相关的人，把下一步带回对话。</p>
-<p align="center"><a href="https://fitmeet.cn">Website</a> · <a href="https://fitmeet.cn/human-network">AI 原生网络</a> · <a href="https://fitmeet.cn/how-it-works">工作方式</a> · <a href="https://apps.apple.com/cn/app/fitmeet/id6797005103">iOS App</a> · <a href="https://fitmeet.cn/developers/agent-setup">Docs</a> · <a href="#install">Quickstart</a> · <a href="https://fitmeet.cn/mcp">MCP</a> · <a href="https://github.com/liudejua27-blip/human-network/tree/main/skills/fitmeet">Skill</a></p>
+<h3 align="center">SI（Social Intelligence）原生的人际互联即时通讯网络</h3>
+<p align="center">以人为核心。<br>让 Agent 连接原本不会相遇的人。</p>
+<p align="center"><a href="https://fitmeet.cn">Website</a> · <a href="https://fitmeet.cn/human-network">SI 人际网络</a> · <a href="https://fitmeet.cn/how-it-works">工作方式</a> · <a href="https://apps.apple.com/cn/app/fitmeet/id6797005103">iOS App</a> · <a href="https://fitmeet.cn/developers/agent-setup">Docs</a> · <a href="#install">Quickstart</a> · <a href="https://fitmeet.cn/mcp">MCP</a> · <a href="https://github.com/liudejua27-blip/human-network/tree/main/skills/fitmeet">Skill</a></p>
 <p align="center"><a href="https://github.com/liudejua27-blip/fitmeet-dsh-plugin/stargazers"><img alt="GitHub Stars" src="https://img.shields.io/github/stars/liudejua27-blip/fitmeet-dsh-plugin?style=flat"></a>
 <a href="https://www.npmjs.com/package/fitmeet-dsh-plugin"><img alt="npm version" src="https://img.shields.io/npm/v/fitmeet-dsh-plugin"></a>
 <a href="https://www.npmjs.com/package/fitmeet-dsh-plugin"><img alt="npm downloads" src="https://img.shields.io/npm/dm/fitmeet-dsh-plugin"></a>
@@ -19,6 +19,16 @@
 
 **DeepSeek Harness 的 引力AI 插件 · 中英文版本。**
 
+**以人为核心，让 Agent 帮你连接原本不会相遇的人。**
+
+## SI 原生：把陌生人重新连接起来
+
+移动互联网的即时通讯，让已经认识的人可以即时联系，却没有让整张人际网络真正互联。人们仍然被分隔在不同的联系人、群组和平台中；很多本来可以互相帮助、合作、交友或相遇的人，因为陌生、顾虑和开口成本，始终没有连接。
+
+SI 是 Social Intelligence（社会智能）。它不是让 AI 更会聊天，而是让 Agent 以人为中心理解意图、信任、场景与边界，在授权范围内发现原本不会相遇的人，代你询问和核对，把下一步带回同一段即时通讯关系。
+
+SI 是 Web4 以人为核心的社会智能层：每个人都可以拥有一个可持续的网络身份，在一个以人为核心的网络中找到原本不认识的人。平台只是入口，真正的关系属于建立关系的人。
+
 ## Install
 
 **安装 引力AI Skill**（为 Agent 提供使用指引）：
@@ -30,11 +40,9 @@ npx skills add liudejua27-blip/human-network --skill fitmeet
 **DeepSeek Harness 插件**（要求 Node.js 22.19+，选择一个语言版本）：
 
 ```sh
-npx --yes @deepseek-ai/dsh@latest plugin --profile web add fitmeet-dsh-plugin-zh@0.2.3
+npx --yes @deepseek-ai/dsh@latest plugin --profile web add fitmeet-dsh-plugin-zh@0.2.5
 npx --yes @deepseek-ai/dsh@latest web
 ```
-
-双语 0.2.4 源码和分发包已经准备好，但 npm 发布仍在等待安全验证；在 registry 读回 0.2.4 之前，请使用已公开的 0.2.3。
 
 **其他 MCP 客户端**：添加以下远程地址，然后在浏览器登录自己的 引力AI 账号。
 
@@ -44,26 +52,27 @@ https://api.fitmeet.cn/api/v1/mcp
 
 Skill 提供行为指引；连接 MCP 并完成授权后才能查询和执行。以上是独立可选入口，通用 MCP 客户端无需安装 Harness 插件。
 
-## 让 DeepSeek Harness 帮你找到一起行动的人
+## 让 DeepSeek Harness 帮你连接世界
 
-想打球却缺个搭子？有件事想找人帮忙？把 引力AI 加入 Harness，从描述需求到搜索人选、查看详情、联系对方，在同一段对话里推进。
+想打球却缺个搭子？想找家教、约会对象、顺路回家的人，或加入今晚的一个局？把 引力AI 加入 Harness，从一句话开始，让 Agent 在网络中发现相关的人、Agent、需求和组织，在同一段对话里推进下一步。
 
-- **找同好与球友**：搜索人物、公开需求和能力，查看匹配依据。
-- **把需求带给更多人**：发布已确认的需求或能力，拿到可查看的结果链接。
-- **把连接继续下去**：查看私聊、组局和提醒，按授权发起联系。
+- **发现原本不会相遇的人、需求和能力**：搜索人物、公开需求、能力和组局，了解为什么适合。
+- **把意图变成行动**：从散步、遛狗、钓鱼、家教、恋爱到麻将、扑克、登山和兴趣群，都从一句话开始。
+- **建立直接连接**：发布你需要什么或能提供什么，让网络发现下一位合适的人。
+- **把关系继续下去**：在私聊、组局和提醒中持续沟通，不必每次从另一个平台重新开始。
 
 ## 现在开始
 
 1. 安装下方中文插件，启动 Harness。
 2. 在弹出的 引力AI 页面登录并选择权限。
-3. 回到对话，发送：**“使用 引力AI，帮我找青岛的羽毛球球友。”**
+3. 回到对话，发送：**“使用 引力AI，帮我找今晚可以一起散步的人。”**
 
 ## 安装
 
 需要 Node.js 22.19+ 和 DeepSeek Harness。选择一个语言包安装，勿同时启用两个同名连接。
 
 ```sh
-npx --yes @deepseek-ai/dsh@latest plugin --profile web add fitmeet-dsh-plugin-zh@0.2.3
+npx --yes @deepseek-ai/dsh@latest plugin --profile web add fitmeet-dsh-plugin-zh@0.2.5
 npx --yes @deepseek-ai/dsh@latest web
 ```
 
@@ -77,14 +86,16 @@ npx --yes @deepseek-ai/dsh@latest web
 https://api.fitmeet.cn/api/v1/mcp
 ```
 
-## 连好后，试着这样说
+## 你可以这样说
 
-- “使用 引力AI，帮我找青岛的羽毛球球友。”
-- “看看我有哪些已确认的需求或能力可以发布到 引力AI。”
-- “查看我的 引力AI 组局和提醒。”
-- “帮我联系这个人，问问周末能不能一起打球。”
+- “帮我找今晚可以一起散步或遛狗的人。”
+- “帮我找一位青岛的大学生家教，教高中数学。”
+- “按我说的条件，帮我认识适合认真交往的人。”
+- “找附近的麻将局、扑克局、登山队或兴趣群。”
+- “找一个顺路回家的附近的人，帮我直接聊聊。”
+- “帮我找能解决这个问题的人或 Agent，并开始合适的对话。”
 
-以上是使用示例，不代表平台一定有对应人选。搜索依据用户允许被发现的信息，发布和发消息按照你为该连接授予的权限执行。
+搜索依据用户允许被发现的信息，发布和发消息按照你为该连接授予的权限执行。
 
 ## 选择你的使用方式
 
@@ -137,12 +148,12 @@ pnpm build:distributions
 
 [官网](https://fitmeet.cn) · [使用文档](https://fitmeet.cn/developers/agent-setup) · [邮箱](mailto:15253005312@163.com)
 
-微信：**angji01**。Discord 和 X 尚未开通。
+微信：**angji01**。欢迎通过官网、MCP 或 DeepSeek Harness 接入引力AI。
 
 ## 收录与分发
 
 [skills.sh](https://skills.sh/liudejua27-blip/human-network/fitmeet) · [Official MCP Registry](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.liudejua27-blip%2Ffitmeet/versions/2.2.2) · [Smithery](https://smithery.ai/servers/liudejua27/fitmeet)
 
-Glama 已提交，公开收录待核实。 [Verification record](https://github.com/liudejua27-blip/human-network/blob/main/DISTRIBUTION.md)
+通过 [skills.sh](https://skills.sh/liudejua27-blip/human-network/fitmeet)、[Official MCP Registry](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.liudejua27-blip%2Ffitmeet/versions/2.2.2) 与 [Smithery](https://smithery.ai/servers/liudejua27/fitmeet) 接入引力AI。
 
 维护入口：[中英文包发布与更新流程](https://github.com/liudejua27-blip/fitmeet-dsh-plugin/blob/main/RELEASING.md)。
