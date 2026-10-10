@@ -9,13 +9,13 @@
 5. 由 SDK 协商协议：新版使用 server/discover，旧版兼容 initialize；随后执行 tools/list；只使用实际返回的工具与 schema，命名空间由宿主决定。工具可见才报告发现成功，不能把配置写入当作调用成功。
 6. 根据用户已要求的只读任务验证相应工具，如有 profile:read 权限的 fitmeet_profile_get 或有 people:search 权限的 fitmeet_people_search。空结果按空结果返回，不制造人物。
 7. 对外发布、开聊、发送消息按 SKILL.md 中的 prepare/confirm 流程逐次确认，安装与 OAuth 授权不替代动作确认。
-8. 初次连接默认申请完整六权限，支持客户端明确申请子集；缺权限时一次请求当前操作所需的完整 scope 集合，并保留此前仍需要的授权范围；授权过期按宿主标准重连。保留输入与准确状态，不无限重试写入。
+8. 初次连接默认申请完整七权限，支持客户端明确申请子集；缺权限时一次请求当前操作所需的完整 scope 集合，并保留此前仍需要的授权范围；授权过期按宿主标准重连。保留输入与准确状态，不无限重试写入。
 
 服务资料（引力AI自定义说明格式，不是通用发现标准）：https://fitmeet.cn/integrations/fitmeet/service.json
 接入状态：https://fitmeet.cn/integrations
 撤销连接：https://fitmeet.cn/mcp/connections
 
-MCP 2.2 目录有 17 个工具；新连接默认申请全部六权限，tools/list 只返回当前授权覆盖的工具。组局、本人提醒、事项和反馈读取需要新增的 social:read；旧授权只保留原有范围。通知读取不建立推送订阅。
+MCP 2.3 目录有 23 个工具；新连接默认申请全部七权限，tools/list 只返回当前授权覆盖的工具。组局、本人提醒、事项和反馈读取需要 social:read；创建组局/群聊和加入公开群需要单独的 social:write；旧授权只保留原有范围。通知读取不建立推送订阅。
 
 工具已显示却返回 403 insufficient_scope 时，按缺失 scope 完成新一轮同意；这不等同于登录过期。若客户端只刷新令牌仍失败，只撤销对应客户端连接后重连，保留其他连接。OAuth 同意和具体业务写操作确认是两件事。
 

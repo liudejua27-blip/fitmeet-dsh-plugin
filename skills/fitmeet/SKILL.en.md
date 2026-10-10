@@ -2,8 +2,8 @@
 name: fitmeet
 display_name: 引力AI People & Needs
 description: Yinli AI is the SI-native human connection and instant-messaging network. SI means Social Intelligence: a human-centered layer that helps Agents understand intent, trust, context and boundaries, then connect people who would otherwise never meet.
-allowed-tools: fitmeet_profile_get, fitmeet_people_search, fitmeet_people_details, fitmeet_publication_sources, fitmeet_publication_prepare, fitmeet_publication_confirm, fitmeet_conversations_list, fitmeet_messages_list, fitmeet_chat_prepare, fitmeet_chat_confirm, fitmeet_message_prepare, fitmeet_message_confirm, fitmeet_groups_list, fitmeet_group_get, fitmeet_notifications_get, fitmeet_my_items_list, fitmeet_connection_feedback_get
-version: 1.3.3
+allowed-tools: fitmeet_profile_get, fitmeet_people_search, fitmeet_people_details, fitmeet_publication_sources, fitmeet_publication_prepare, fitmeet_publication_confirm, fitmeet_conversations_list, fitmeet_messages_list, fitmeet_chat_prepare, fitmeet_chat_confirm, fitmeet_message_prepare, fitmeet_message_confirm, fitmeet_groups_list, fitmeet_group_get, fitmeet_notifications_get, fitmeet_my_items_list, fitmeet_connection_feedback_get, fitmeet_inquiry_prepare, fitmeet_inquiry_confirm, fitmeet_group_prepare, fitmeet_group_confirm, fitmeet_group_join_prepare, fitmeet_group_join_confirm
+version: 1.4.0
 author: 引力AI
 ---
 
@@ -76,7 +76,7 @@ Opening a conversation uses chat prepare, an exact candidate preview, explicit u
 
 ## Groups, notifications and feedback
 
-Groups and gatherings share the visible group tools. Creating, joining, inviting, rescheduling or completing a group, changing notification settings and editing feedback use the returned 引力AI web pages and their existing controls. Do not invent write tools or use publication/message confirmation to perform group actions.
+The group, notification and feedback tools in this section are read-only: they do not create, join, invite, reschedule or complete a group, change notification settings or edit feedback. Those actions remain available through the returned 引力AI web pages and their existing controls. MCP 2.3 exposes only the SI network prepare/confirm tools below for inquiries, group creation and joining a public group; do not invent other write tools or substitute publication/message confirmation.
 
 Notifications are query-time snapshots, not subscriptions. Reading does not mark them read. Do-not-disturb does not mean zero unread messages. Feedback describes the owner's experience, not facts about another person or authorization to contact them. Null values mean unknown, not false.
 
@@ -91,3 +91,16 @@ Notifications are query-time snapshots, not subscriptions. Reading does not mark
 - `MCP_RESOURCE_PAUSED`: respect `retryAfterSeconds`; do not loop retries.
 
 Not connected, not executed, timed out, permission denied, missing counts and `NOT_COMPUTED` do not mean zero results. Never claim a write succeeded without `executed: true` and its final receipt. The connector does not edit profiles or memory, automatically create/confirm Needs, make payments, write calendars, send bulk messages or perform admin actions. Website and in-app Agent capabilities can be broader than external MCP capabilities.
+
+
+## SI network actions (MCP 2.3)
+
+These writes require the new `social:write` scope or the existing `messages:write` scope and always use a short-lived, one-time prepare → confirm review. OAuth consent alone is not per-action approval; automatic confirmation is allowed only when prepare returns `authorizationMode: AUTOMATIC`.
+
+| Tools | Purpose | Scope |
+| --- | --- | --- |
+| `fitmeet_inquiry_prepare` / `fitmeet_inquiry_confirm` | Send one exact question to a person from the current search; revalidate the candidate and blocks at confirmation | `people:search` + `messages:write` |
+| `fitmeet_group_prepare` / `fitmeet_group_confirm` | Create a gathering or group chat and join as owner; no invite is sent automatically | `social:write` |
+| `fitmeet_group_join_prepare` / `fitmeet_group_join_confirm` | Join a currently public and open gathering or group chat; revalidate revision, capacity and visibility | `social:write` |
+
+Use a new `requestId` and prepare again whenever the question, activity fields, group or target changes. Private groups still require an invitation. Do not claim an inquiry, creation or join without the final `executed: true` receipt.

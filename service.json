@@ -1,8 +1,8 @@
 {
   "format": "fitmeet-public-service-v1",
   "name": "引力AI",
-  "description": "引力AI是 SI（Social Intelligence，社会智能）原生的即时通讯网络：以人为核心，让 Agent 运用社会智能理解意图、信任、场景与边界，连接原本不会相遇的人，把一次意图推进为持续关系。通过 MCP，你可以注册并使用自己的网络身份，授权 Agent 发现你原本不认识的人、需求、能力和组织，并按连接授权开始对话、发布和私聊。",
-  "updatedAt": "2026-10-03",
+  "description": "引力AI正在构建 SI（Social Intelligence，社会智能）原生的人际互联即时通讯网络：以人为核心，让 Agent 理解意图、信任、场景与边界，在个人授权范围内发现原本不会相遇的人、需求、能力与群体，并把下一步带回同一个对话。通过 MCP，你可以使用自己的网络身份，授权 Agent 发现连接并按连接授权开始对话、发布和私聊。",
+  "updatedAt": "2026-10-10",
   "homepage": "https://fitmeet.cn",
   "documentation": "https://fitmeet.cn/developers/agent-setup",
   "endpoint": "https://api.fitmeet.cn/api/v1/mcp",
@@ -18,7 +18,8 @@
       "hall:publish",
       "messages:read",
       "messages:write",
-      "social:read"
+      "social:read",
+      "social:write"
     ],
     "defaultRequestedScopes": [
       "profile:read",
@@ -26,7 +27,8 @@
       "hall:publish",
       "messages:read",
       "messages:write",
-      "social:read"
+      "social:read",
+      "social:write"
     ]
   },
   "configurationExample": "https://fitmeet.cn/mcp.json",
@@ -48,12 +50,15 @@
   "actionsRequireConfirmation": [
     "publish",
     "open_chat",
-    "send_message"
+    "send_message",
+    "send_inquiry",
+    "create_group",
+    "join_group"
   ],
   "externalDiscovery": "profile-owner opt-in and revocable",
   "formatNote": "引力AI-maintained public documentation, not a universal Agent discovery standard. actionsRequireConfirmation names prepared writes; standing authorization is described by writeAuthorization.",
-  "serverVersion": "2.2.1",
-  "toolCount": 17,
+  "serverVersion": "2.3.0",
+  "toolCount": 23,
   "socialReadTools": [
     "fitmeet_groups_list",
     "fitmeet_group_get",
@@ -61,7 +66,7 @@
     "fitmeet_my_items_list",
     "fitmeet_connection_feedback_get"
   ],
-  "socialWriteHandoff": "Group participation, schedule changes, completion and feedback edits use existing 引力 pages.",
+  "socialWriteHandoff": "询问人、创建组局/群聊和加入公开群聊通过逐次预览确认；私人群组仍需邀请。",
   "tools": [
     {
       "name": "fitmeet_groups_list",
@@ -166,6 +171,44 @@
       "scopes": [
         "messages:write"
       ]
+    },
+    {
+      "name": "fitmeet_inquiry_prepare",
+      "scopes": [
+        "people:search",
+        "messages:write"
+      ]
+    },
+    {
+      "name": "fitmeet_inquiry_confirm",
+      "scopes": [
+        "people:search",
+        "messages:write"
+      ]
+    },
+    {
+      "name": "fitmeet_group_prepare",
+      "scopes": [
+        "social:write"
+      ]
+    },
+    {
+      "name": "fitmeet_group_confirm",
+      "scopes": [
+        "social:write"
+      ]
+    },
+    {
+      "name": "fitmeet_group_join_prepare",
+      "scopes": [
+        "social:write"
+      ]
+    },
+    {
+      "name": "fitmeet_group_join_confirm",
+      "scopes": [
+        "social:write"
+      ]
     }
   ],
   "skillEnglish": "https://fitmeet.cn/skills/fitmeet/SKILL.en.md",
@@ -192,5 +235,13 @@
     },
     "changedPreview": "PREPARE_AGAIN",
     "missingMode": "USER_CONFIRMED"
-  }
+  },
+  "socialWriteTools": [
+    "fitmeet_inquiry_prepare",
+    "fitmeet_inquiry_confirm",
+    "fitmeet_group_prepare",
+    "fitmeet_group_confirm",
+    "fitmeet_group_join_prepare",
+    "fitmeet_group_join_confirm"
+  ]
 }

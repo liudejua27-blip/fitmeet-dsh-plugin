@@ -5,8 +5,8 @@ display_name_en: 引力AI People & Needs
 description: 引力AI是 SI（Social Intelligence，社会智能）原生的人际互联即时通讯网络。以人为核心，让 Agent 理解人的意图、信任、场景与边界，连接原本不会相遇的人。
 description_zh: 引力AI是 SI（Social Intelligence，社会智能）原生的人际互联即时通讯网络。以人为核心，让 Agent 理解人的意图、信任、场景与边界，连接原本不会相遇的人。
 description_en: Yinli AI is the SI-native human connection and instant-messaging network. SI means Social Intelligence: a human-centered layer that helps Agents understand intent, trust, context and boundaries, then connect people who would otherwise never meet.
-allowed-tools: fitmeet_profile_get, fitmeet_people_search, fitmeet_people_details, fitmeet_publication_sources, fitmeet_publication_prepare, fitmeet_publication_confirm, fitmeet_conversations_list, fitmeet_messages_list, fitmeet_chat_prepare, fitmeet_chat_confirm, fitmeet_message_prepare, fitmeet_message_confirm, fitmeet_groups_list, fitmeet_group_get, fitmeet_notifications_get, fitmeet_my_items_list, fitmeet_connection_feedback_get
-version: 1.3.3
+allowed-tools: fitmeet_profile_get, fitmeet_people_search, fitmeet_people_details, fitmeet_publication_sources, fitmeet_publication_prepare, fitmeet_publication_confirm, fitmeet_conversations_list, fitmeet_messages_list, fitmeet_chat_prepare, fitmeet_chat_confirm, fitmeet_message_prepare, fitmeet_message_confirm, fitmeet_groups_list, fitmeet_group_get, fitmeet_notifications_get, fitmeet_my_items_list, fitmeet_connection_feedback_get, fitmeet_inquiry_prepare, fitmeet_inquiry_confirm, fitmeet_group_prepare, fitmeet_group_confirm, fitmeet_group_join_prepare, fitmeet_group_join_confirm
+version: 1.4.0
 author: 引力AI
 ---
 
@@ -103,7 +103,7 @@ author: 引力AI
 
 没有 `executed: true` 和最终回执时，不得声称已发布、已开聊或已发送。`fitmeet_chat_confirm` 返回 `messageSent: false` 时必须准确说明会话已开启但消息尚未发送。不得借用其他工具绕过这些边界。
 
-## 组局、提醒与连接反馈（MCP 2.2）
+## 组局、提醒与连接反馈（MCP 2.3）
 
 以下工具需要单独的 `social:read` 授权；已有连接不会自动增加权限。缺权限时按宿主 OAuth 流程请求用户授权，再刷新工具列表。
 
@@ -117,4 +117,17 @@ author: 引力AI
 
 提醒是查询时的快照，不宣称正在后台持续监控。免打扰不等于未读数量为零。反馈只说明用户自己的经历，未知值不是否定，也不代表对方意愿。描述结果时使用中文状态名称，保留未知信息，不复述内部字段名。
 
-组局创建、加入、邀请、改期、完成，以及通知设置和反馈修改，通过返回的引力AI网页入口和原有控件完成；以上新工具均不执行这些写操作。不要虚构新确认工具。不要用旧的私聊或发布确认工具代替组局操作。
+上述只读工具不执行组局创建、加入、邀请、改期、完成，也不修改通知设置或反馈；这些操作仍可通过返回的引力AI网页入口和原有控件完成。MCP 2.3 仅通过下方明确列出的 SI 网络 prepare/confirm 工具提供询问、创建组局和加入公开群，不要虚构其他确认工具，也不要用旧的私聊或发布确认工具代替这些动作。
+
+
+## SI 网络动作（MCP 2.3）
+
+以下写操作要求新增 `social:write` 或既有 `messages:write` 授权，并始终经过短时、一次性的 prepare → confirm。普通 OAuth 同意不等于单次动作确认；只有 prepare 返回 `authorizationMode: AUTOMATIC` 时才可按授权自动确认。
+
+| 工具 | 用途 | scope |
+| --- | --- | --- |
+| `fitmeet_inquiry_prepare` / `fitmeet_inquiry_confirm` | 给当前搜索结果中的一位真人发送准确问题；确认时重新核验候选和阻断状态 | `people:search` + `messages:write` |
+| `fitmeet_group_prepare` / `fitmeet_group_confirm` | 创建组局或群聊并把本人加入；不自动邀请其他人 | `social:write` |
+| `fitmeet_group_join_prepare` / `fitmeet_group_join_confirm` | 加入当前公开且开放的组局或群聊；确认时重新核验版本、容量和可见性 | `social:write` |
+
+修改问题、活动字段、群组或目标后必须使用新 `requestId` 重新 prepare。私人群组不能通过此接口直接加入，邀请和后续安排仍遵循站内关系与事项状态。没有最终 `executed: true` 回执，不得声称已询问、创建或加入。

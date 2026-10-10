@@ -107,12 +107,12 @@ https://api.fitmeet.cn/api/v1/mcp
 
 ## 自动执行与工具可用性
 
-新连接默认请求完整六权限，刷新后的工具列表只返回已授权工具。旧客户端缓存可能需要刷新。授权页可独立开启自动发布、开聊和发消息；开启后按 prepare 的 AUTOMATIC 回执连续提交，不再逐次询问。未开启的连接仍使用下文逐次确认流程。自动模式不创建或确认 Need，不绕过来源、对象、内容与幂等校验。撤销连接可停止后续自动执行。
+新连接默认请求完整七权限，刷新后的工具列表只返回已授权工具。旧客户端缓存可能需要刷新。授权页可独立开启自动发布、开聊和发消息；开启后按 prepare 的 AUTOMATIC 回执连续提交，不再逐次询问。未开启的连接仍使用下文逐次确认流程。自动模式不创建或确认 Need，不绕过来源、对象、内容与幂等校验。撤销连接可停止后续自动执行。
 
 
 ## 工具与范围
 
-MCP 2.2 提供 17 个工具、6 类权限。完整工具表及参数规则见[中文 Skill](skills/fitmeet/SKILL.md)。
+MCP 2.3 提供 23 个工具、7 类权限。完整工具表及参数规则见[中文 Skill](skills/fitmeet/SKILL.md)。
 
 - 本人资料；人物、需求与能力搜索；候选详情。
 - 已确认的发布来源、发布预览和确认发布。
@@ -152,8 +152,8 @@ pnpm build:distributions
 
 ## 收录与分发
 
-[skills.sh](https://skills.sh/liudejua27-blip/human-network/fitmeet) · [Official MCP Registry](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.liudejua27-blip%2Ffitmeet/versions/2.2.3) · [Smithery](https://smithery.ai/servers/liudejua27/fitmeet)
+[skills.sh](https://skills.sh/liudejua27-blip/human-network/fitmeet) · [Official MCP Registry](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.liudejua27-blip%2Ffitmeet/versions/2.3.0) · [Smithery](https://smithery.ai/servers/liudejua27/fitmeet)
 
-通过 [skills.sh](https://skills.sh/liudejua27-blip/human-network/fitmeet)、[Official MCP Registry](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.liudejua27-blip%2Ffitmeet/versions/2.2.3) 与 [Smithery](https://smithery.ai/servers/liudejua27/fitmeet) 接入引力AI。
+通过 [skills.sh](https://skills.sh/liudejua27-blip/human-network/fitmeet)、[Official MCP Registry](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.liudejua27-blip%2Ffitmeet/versions/2.3.0) 与 [Smithery](https://smithery.ai/servers/liudejua27/fitmeet) 接入引力AI。
 
 维护入口：[中英文包发布与更新流程](https://github.com/liudejua27-blip/fitmeet-dsh-plugin/blob/main/RELEASING.md)。

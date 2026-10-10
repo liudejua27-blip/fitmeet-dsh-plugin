@@ -4,7 +4,7 @@ Configure only when the user asks to connect. Follow the host's current configur
 
 The client SDK handles discovery and supported client identity methods. DCR and CIMD are compatible options, not separate user-facing products. Use the actual metadata; never invent a client identity URL. The user logs in and chooses the requested permissions.
 
-Verify each stage separately: configuration saved, tools discovered, authorized read succeeds, reconnect/refresh works. Use a read tool appropriate to the user's request and granted scopes. There are 17 tools in MCP 2.2; groups, notifications, items and feedback require social:read. Existing grants do not gain new permissions automatically.
+Verify each stage separately: configuration saved, tools discovered, authorized read succeeds, reconnect/refresh works. Use a read tool appropriate to the user's request and granted scopes. There are 23 tools in MCP 2.3; groups, notifications, items and feedback require social:read, while group creation/join requires social:write. Existing grants do not gain new permissions automatically.
 
 For 403 insufficient_scope, request the indicated scopes through fresh consent. Token refresh cannot add scopes. If the host gets stuck refreshing, revoke only the affected client at https://fitmeet.cn/mcp/connections, then reconnect in that host. Do not describe every error as token expiry.
 

@@ -1,3 +1,9 @@
+## 0.3.0 — 2026-10-10 (prepared; pending API deployment and publication)
+
+- Align the bilingual Harness distribution with MCP 2.3.0: 23 tools, seven scopes, including `social:write` group prepare/confirm actions.
+- Refresh the bundled Skill and service manifest to 1.4.0 and preserve prepare/confirm authorization boundaries.
+- This release is prepared locally; npm, GitHub release, and directory listings remain pending API deployment and live contract readback.
+
 # Changelog
 
 ## 0.2.6 — 2026-10-03

@@ -92,12 +92,12 @@ Search uses the information people have made discoverable. Publishing and messag
 
 ## Automatic execution and available tools
 
-New connections request all six scopes; fresh tool lists contain only tools covered by the grant. Cached lists may need refreshing. Enable automatic publishing, chats and messages separately on the 引力AI consent page. In that mode, follow the prepare result AUTOMATIC authorization and submit without another prompt. Otherwise the per-action confirmation flow below applies. Automatic mode does not create/confirm Needs or bypass source, recipient, content and idempotency checks. Revoking the connection stops subsequent automatic execution.
+New connections request all seven scopes; fresh tool lists contain only tools covered by the grant. Cached lists may need refreshing. Enable automatic publishing, chats and messages separately on the 引力AI consent page. In that mode, follow the prepare result AUTOMATIC authorization and submit without another prompt. Otherwise the per-action confirmation flow below applies. Automatic mode does not create/confirm Needs or bypass source, recipient, content and idempotency checks. Revoking the connection stops subsequent automatic execution.
 
 
 ## Tools and scope
 
-MCP 2.2 provides 17 tools and six permission scopes. The [English Skill](skills/fitmeet/SKILL.en.md) documents every tool and its usage.
+MCP 2.3 provides 23 tools and seven permission scopes. The [English Skill](skills/fitmeet/SKILL.en.md) documents every tool and its usage.
 
 - Own profile; people, need and capability search; candidate details.
 - Confirmed publication sources, publication previews and confirmation.
@@ -137,8 +137,8 @@ WeChat: **angji01**. Build with 引力AI through the website, MCP endpoint or De
 
 ## Discover 引力AI
 
-[skills.sh](https://skills.sh/liudejua27-blip/human-network/fitmeet) · [Official MCP Registry](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.liudejua27-blip%2Ffitmeet/versions/2.2.3) · [Smithery](https://smithery.ai/servers/liudejua27/fitmeet)
+[skills.sh](https://skills.sh/liudejua27-blip/human-network/fitmeet) · [Official MCP Registry](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.liudejua27-blip%2Ffitmeet/versions/2.3.0) · [Smithery](https://smithery.ai/servers/liudejua27/fitmeet)
 
-Explore the public integrations through [skills.sh](https://skills.sh/liudejua27-blip/human-network/fitmeet), the [Official MCP Registry](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.liudejua27-blip%2Ffitmeet/versions/2.2.3) and [Smithery](https://smithery.ai/servers/liudejua27/fitmeet).
+Explore the public integrations through [skills.sh](https://skills.sh/liudejua27-blip/human-network/fitmeet), the [Official MCP Registry](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.liudejua27-blip%2Ffitmeet/versions/2.3.0) and [Smithery](https://smithery.ai/servers/liudejua27/fitmeet).
 
 Maintainers: [Bilingual package release procedure](https://github.com/liudejua27-blip/fitmeet-dsh-plugin/blob/main/RELEASING.md).

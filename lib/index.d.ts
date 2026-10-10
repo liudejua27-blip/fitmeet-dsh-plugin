@@ -18,7 +18,7 @@ export declare const name: string;
 export declare const inject: string[];
 export declare const FITMEET_SERVER_NAME = "fitmeet";
 export declare const FITMEET_MCP_URL = "https://api.fitmeet.cn/api/v1/mcp";
-export declare const FITMEET_SCOPES = "profile:read people:search hall:publish messages:read messages:write social:read";
+export declare const FITMEET_SCOPES = "profile:read people:search hall:publish messages:read messages:write social:read social:write";
 export declare const FITMEET_CREDENTIAL_REF = "FITMEET_MCP_OAUTH";
 /** User configuration for one OAuth-protected Streamable HTTP MCP server. */
 export interface Config {

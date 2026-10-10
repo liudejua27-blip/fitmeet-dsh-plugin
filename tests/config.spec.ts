@@ -48,7 +48,8 @@ describe('引力AI plugin configuration', () => {
     const legacy = FITMEET_SCOPES.replace(' social:read', '')
     expect(resolveConfig({ ...validConfig(), scope: legacy }).scope).toBe(legacy)
     expect(resolveConfig({ serverName: 'fitmeet', url: FITMEET_MCP_URL }).scope).toBe(FITMEET_SCOPES)
-    for (const scope of ['', ' ', 'social:write', 'profile:read profile:read']) {
+    expect(resolveConfig({ ...validConfig(), scope: 'social:write' }).scope).toBe('social:write')
+    for (const scope of ['', ' ', 'profile:read profile:read']) {
       expect(() => resolveConfig({ ...validConfig(), scope })).toThrow('subset')
     }
   })
