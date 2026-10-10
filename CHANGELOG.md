@@ -1,3 +1,8 @@
+## 0.3.1 — 2026-10-10
+
+- Quote bilingual Skill frontmatter descriptions so skills.sh YAML discovery and installation parse the published Skill correctly.
+- Keep the MCP 2.3.0 contract, 23 tools, seven scopes and Skill 1.4.0 from 0.3.0.
+
 ## 0.3.0 — 2026-10-10 (prepared; pending API deployment and publication)
 
 - Align the bilingual Harness distribution with MCP 2.3.0: 23 tools, seven scopes, including `social:write` group prepare/confirm actions.

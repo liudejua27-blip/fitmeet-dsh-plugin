@@ -1,7 +1,7 @@
 ---
 name: fitmeet
 display_name: 引力AI People & Needs
-description: Yinli AI is the SI-native human connection and instant-messaging network. SI means Social Intelligence: a human-centered layer that helps Agents understand intent, trust, context and boundaries, then connect people who would otherwise never meet.
+description: "Yinli AI is the SI-native human connection and instant-messaging network. SI means Social Intelligence: a human-centered layer that helps Agents understand intent, trust, context and boundaries, then connect people who would otherwise never meet."
 allowed-tools: fitmeet_profile_get, fitmeet_people_search, fitmeet_people_details, fitmeet_publication_sources, fitmeet_publication_prepare, fitmeet_publication_confirm, fitmeet_conversations_list, fitmeet_messages_list, fitmeet_chat_prepare, fitmeet_chat_confirm, fitmeet_message_prepare, fitmeet_message_confirm, fitmeet_groups_list, fitmeet_group_get, fitmeet_notifications_get, fitmeet_my_items_list, fitmeet_connection_feedback_get, fitmeet_inquiry_prepare, fitmeet_inquiry_confirm, fitmeet_group_prepare, fitmeet_group_confirm, fitmeet_group_join_prepare, fitmeet_group_join_confirm
 version: 1.4.0
 author: 引力AI
