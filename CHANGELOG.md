@@ -1,3 +1,7 @@
+## 0.3.2 — 2026-10-10
+
+- Update bilingual install examples to the current 0.3.2 package names after the Skill parser fix.
+
 ## 0.3.1 — 2026-10-10
 
 - Quote bilingual Skill frontmatter descriptions so skills.sh YAML discovery and installation parse the published Skill correctly.

@@ -40,7 +40,7 @@ npx skills add liudejua27-blip/human-network --skill fitmeet
 **DeepSeek Harness plugin** (Node.js 22.19+; choose one language edition):
 
 ```sh
-npx --yes @deepseek-ai/dsh@latest plugin --profile web add fitmeet-dsh-plugin@0.2.5
+npx --yes @deepseek-ai/dsh@latest plugin --profile web add fitmeet-dsh-plugin@0.3.2
 npx --yes @deepseek-ai/dsh@latest web
 ```
 
