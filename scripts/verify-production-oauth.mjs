@@ -1,15 +1,12 @@
-const endpoint = 'https://api.fitmeet.cn/api/v1/mcp'
-const issuer = 'https://api.fitmeet.cn'
+import { readFileSync } from 'node:fs'
+
+const manifest = JSON.parse(readFileSync(new URL('../service.json', import.meta.url), 'utf8'))
+const packageInfo = JSON.parse(readFileSync(new URL('../package.json', import.meta.url), 'utf8'))
+const endpoint = manifest.endpoint
+const issuer = new URL(endpoint).origin
 const resourceMetadataUrl = `${issuer}/.well-known/oauth-protected-resource/api/v1/mcp`
 const authorizationMetadataUrl = `${issuer}/.well-known/oauth-authorization-server`
-const expectedScopes = [
-  'profile:read',
-  'people:search',
-  'hall:publish',
-  'messages:read',
-  'messages:write',
-  'social:read',
-]
+const expectedScopes = manifest.authentication.optionalScopes
 
 const unauthorized = await fetch(endpoint, {
   method: 'POST',
@@ -21,7 +18,7 @@ const unauthorized = await fetch(endpoint, {
     params: {
       protocolVersion: '2025-03-26',
       capabilities: {},
-      clientInfo: { name: 'fitmeet-dsh-plugin-check', version: '0.1.2' },
+      clientInfo: { name: 'fitmeet-dsh-plugin-check', version: packageInfo.version },
     },
   }),
 })
